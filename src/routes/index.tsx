@@ -178,6 +178,9 @@ function Index() {
               <a href={TEL} className="inline-flex items-center gap-2 rounded-full bg-navy text-white px-6 py-3.5 font-semibold shadow-lg shadow-navy/20 hover:-translate-y-0.5 hover:shadow-xl transition-all">
                 <Phone className="h-5 w-5" /> Call {PHONE}
               </a>
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-6 py-3.5 font-semibold shadow-lg shadow-[#25D366]/25 hover:-translate-y-0.5 hover:shadow-xl transition-all">
+                <WhatsAppIcon className="h-5 w-5" /> WhatsApp us
+              </a>
               <a href="#quote" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold hover:-translate-y-0.5 hover:bg-yellow/90 transition-all">
                 Get a free quote <ArrowRight className="h-5 w-5" />
               </a>
