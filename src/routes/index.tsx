@@ -442,10 +442,14 @@ function Index() {
                   <a href={TEL} className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold hover:-translate-y-0.5 transition-transform">
                     <Phone className="h-5 w-5" /> Call {PHONE}
                   </a>
-                  <a href={`sms:0415125702`} className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 text-white px-6 py-3.5 font-semibold hover:bg-white/20 transition-colors">
-                    <MessageSquare className="h-5 w-5" /> Message us
+                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-6 py-3.5 font-semibold hover:-translate-y-0.5 transition-transform">
+                    <WhatsAppIcon className="h-5 w-5" /> WhatsApp
+                  </a>
+                  <a href={SMS_URL} className="inline-flex items-center gap-2 rounded-full bg-white/10 border border-white/20 text-white px-6 py-3.5 font-semibold hover:bg-white/20 transition-colors">
+                    <MessageSquare className="h-5 w-5" /> SMS us
                   </a>
                 </div>
+                <p className="mt-3 text-xs text-white/60">Opens WhatsApp or your SMS app with a ready‑to‑send quote message.</p>
                 <div className="mt-8 flex flex-wrap gap-2 text-xs">
                   {["Quick replies", "On time", "No fuss", "Fair prices"].map((t) => (
                     <span key={t} className="rounded-full bg-white/10 border border-white/15 px-3 py-1 text-white/85">{t}</span>
