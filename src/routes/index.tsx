@@ -7,10 +7,46 @@ import { Toaster, toast } from "sonner";
 import {
   Phone, MessageSquare, Sofa, Trash2, Leaf, Warehouse, Truck, Boxes,
   Building2, Recycle, Clock, ShieldCheck, ThumbsUp, MapPin, DollarSign,
-  Zap, CheckCircle2, Star, Send, Camera, ArrowRight, Weight,
+  Zap, CheckCircle2, Star, Send, Camera, ArrowRight, Weight, HelpCircle,
 } from "lucide-react";
 import heroUte from "@/assets/hero-ute.jpg";
 import { useReveal } from "@/hooks/use-reveal";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+
+const FAQS: { q: string; a: string }[] = [
+  {
+    q: "How much does rubbish removal in Perth cost?",
+    a: "Pricing is based on volume, weight and the type of rubbish — not a flat fee. Most small jobs (a couple of items, a single mattress, a few green waste bags) start from around $90. A half ute load is typically $180–$280 and a full one‑tonne load $350–$550. Send us a photo or quick description on 0415 125 702 for a free, upfront quote with no surprises.",
+  },
+  {
+    q: "What items will you take away?",
+    a: "Furniture, mattresses, lounges, whitegoods, general household junk, garden and green waste, e‑waste, office and shed clutter, building offcuts and renovation debris. If you're not sure, send a photo — chances are we'll take it.",
+  },
+  {
+    q: "Are there items you can't remove?",
+    a: "For safety and disposal rules we can't take asbestos, liquid chemicals, paint, fuels, gas bottles, car tyres, or hazardous medical waste. If you have something tricky, give us a call and we'll point you to the right service.",
+  },
+  {
+    q: "How quickly can you come out?",
+    a: "Most Perth jobs are sorted same‑day or next‑day. Call or message before noon and we can usually be there the same afternoon. Booked jobs get a tight arrival window — we don't waste your day.",
+  },
+  {
+    q: "Which suburbs do you service?",
+    a: "All of the Perth metro and surrounding areas — including the CBD, northern, southern, eastern and western suburbs, plus the Hills. If you're nearby and not sure, just ask.",
+  },
+  {
+    q: "Do I need to be home when you arrive?",
+    a: "Not always. If the rubbish is accessible (front yard, driveway, verge or side of the house), we're happy to pick it up while you're out. Send a photo and pay by bank transfer or card once it's done.",
+  },
+  {
+    q: "Do you do the lifting and loading?",
+    a: "Yes — all of it. We load, sweep up, and leave the area tidy. You don't need to drag anything to the kerb unless you want to.",
+  },
+  {
+    q: "How do I pay?",
+    a: "Cash, bank transfer or card on the day. You'll get a clear price before we start — no hidden fees, no callout charges.",
+  },
+];
 
 const PHONE = "0415 125 702";
 const TEL = "tel:0415125702";
@@ -78,10 +114,21 @@ function Index() {
     address: { "@type": "PostalAddress", addressLocality: "Perth", addressRegion: "WA", addressCountry: "AU" },
   };
 
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: FAQS.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+
   return (
     <div className="min-h-screen bg-background text-foreground">
       <Toaster position="top-center" richColors />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       {/* NAV */}
       <header className="sticky top-0 z-40 backdrop-blur bg-white/85 border-b border-border">
@@ -96,6 +143,7 @@ function Index() {
             <a href="#services" className="hover:text-navy">Services</a>
             <a href="#why" className="hover:text-navy">Why us</a>
             <a href="#how" className="hover:text-navy">How it works</a>
+            <a href="#faq" className="hover:text-navy">FAQ</a>
             <a href="#quote" className="hover:text-navy">Free quote</a>
           </nav>
           <a href={TEL} className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-4 py-2 text-sm font-semibold hover:bg-navy/90 transition-colors shadow-sm">
@@ -315,6 +363,54 @@ function Index() {
                 <div className="text-white/70 text-sm">We come to you</div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="py-20 sm:py-28 bg-white">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="text-center max-w-2xl mx-auto reveal">
+            <p className="bg-yellow inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-navy">FAQ</p>
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl text-navy">Common questions</h2>
+            <p className="mt-4 text-navy/70">Everything Perth locals usually want to know before booking a rubbish removal.</p>
+          </div>
+
+          <div className="mt-12 grid lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-8 reveal">
+              <Accordion type="single" collapsible defaultValue="faq-0" className="rounded-2xl bg-white border border-navy/10 shadow-sm divide-y divide-navy/10 overflow-hidden">
+                {FAQS.map((f, i) => (
+                  <AccordionItem key={f.q} value={`faq-${i}`} className="border-b-0 px-5 sm:px-6">
+                    <AccordionTrigger className="py-5 text-left font-display text-base sm:text-lg text-navy hover:no-underline [&[data-state=open]]:text-navy">
+                      <span className="flex items-start gap-3">
+                        <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-yellow/30 text-navy">
+                          <HelpCircle className="h-4 w-4" />
+                        </span>
+                        {f.q}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-5 pl-10 pr-2 text-navy/75 text-[15px] leading-relaxed">
+                      {f.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            <aside className="lg:col-span-4 reveal">
+              <div className="rounded-2xl bg-navy text-white p-6 sm:p-7 shadow-xl relative overflow-hidden">
+                <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-yellow/20 blur-2xl" />
+                <p className="text-yellow text-xs font-bold uppercase tracking-wider relative">Still wondering?</p>
+                <h3 className="mt-2 font-display text-2xl relative">Ask us anything — we pick up the phone.</h3>
+                <p className="mt-3 text-white/75 text-sm relative">Send a photo of the job and we'll give you an honest, upfront price.</p>
+                <a href={TEL} className="mt-5 inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-5 py-3 font-semibold hover:-translate-y-0.5 transition-transform relative">
+                  <Phone className="h-4 w-4" /> Call {PHONE}
+                </a>
+                <a href="#quote" className="mt-3 inline-flex items-center gap-2 text-white/85 hover:text-yellow text-sm font-semibold relative">
+                  Or request a free quote <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
