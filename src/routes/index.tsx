@@ -7,10 +7,46 @@ import { Toaster, toast } from "sonner";
 import {
   Phone, MessageSquare, Sofa, Trash2, Leaf, Warehouse, Truck, Boxes,
   Building2, Recycle, Clock, ShieldCheck, ThumbsUp, MapPin, DollarSign,
-  Zap, CheckCircle2, Star, Send, Camera, ArrowRight, Weight,
+  Zap, CheckCircle2, Star, Send, Camera, ArrowRight, Weight, HelpCircle,
 } from "lucide-react";
 import heroUte from "@/assets/hero-ute.jpg";
 import { useReveal } from "@/hooks/use-reveal";
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
+
+const FAQS: { q: string; a: string }[] = [
+  {
+    q: "How much does rubbish removal in Perth cost?",
+    a: "Pricing is based on volume, weight and the type of rubbish — not a flat fee. Most small jobs (a couple of items, a single mattress, a few green waste bags) start from around $90. A half ute load is typically $180–$280 and a full one‑tonne load $350–$550. Send us a photo or quick description on 0415 125 702 for a free, upfront quote with no surprises.",
+  },
+  {
+    q: "What items will you take away?",
+    a: "Furniture, mattresses, lounges, whitegoods, general household junk, garden and green waste, e‑waste, office and shed clutter, building offcuts and renovation debris. If you're not sure, send a photo — chances are we'll take it.",
+  },
+  {
+    q: "Are there items you can't remove?",
+    a: "For safety and disposal rules we can't take asbestos, liquid chemicals, paint, fuels, gas bottles, car tyres, or hazardous medical waste. If you have something tricky, give us a call and we'll point you to the right service.",
+  },
+  {
+    q: "How quickly can you come out?",
+    a: "Most Perth jobs are sorted same‑day or next‑day. Call or message before noon and we can usually be there the same afternoon. Booked jobs get a tight arrival window — we don't waste your day.",
+  },
+  {
+    q: "Which suburbs do you service?",
+    a: "All of the Perth metro and surrounding areas — including the CBD, northern, southern, eastern and western suburbs, plus the Hills. If you're nearby and not sure, just ask.",
+  },
+  {
+    q: "Do I need to be home when you arrive?",
+    a: "Not always. If the rubbish is accessible (front yard, driveway, verge or side of the house), we're happy to pick it up while you're out. Send a photo and pay by bank transfer or card once it's done.",
+  },
+  {
+    q: "Do you do the lifting and loading?",
+    a: "Yes — all of it. We load, sweep up, and leave the area tidy. You don't need to drag anything to the kerb unless you want to.",
+  },
+  {
+    q: "How do I pay?",
+    a: "Cash, bank transfer or card on the day. You'll get a clear price before we start — no hidden fees, no callout charges.",
+  },
+];
 
 const PHONE = "0415 125 702";
 const TEL = "tel:0415125702";
