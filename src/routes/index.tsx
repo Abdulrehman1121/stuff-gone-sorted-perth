@@ -132,6 +132,7 @@ function Index() {
             <a href="#services" className="hover:text-navy">Services</a>
             <a href="#why" className="hover:text-navy">Why us</a>
             <a href="#how" className="hover:text-navy">How it works</a>
+            <a href="#faq" className="hover:text-navy">FAQ</a>
             <a href="#quote" className="hover:text-navy">Free quote</a>
           </nav>
           <a href={TEL} className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-4 py-2 text-sm font-semibold hover:bg-navy/90 transition-colors shadow-sm">
