@@ -367,6 +367,54 @@ function Index() {
         </div>
       </section>
 
+      {/* FAQ */}
+      <section id="faq" className="py-20 sm:py-28 bg-white">
+        <div className="mx-auto max-w-5xl px-4 sm:px-6">
+          <div className="text-center max-w-2xl mx-auto reveal">
+            <p className="bg-yellow inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-navy">FAQ</p>
+            <h2 className="mt-4 font-display text-4xl sm:text-5xl text-navy">Common questions</h2>
+            <p className="mt-4 text-navy/70">Everything Perth locals usually want to know before booking a rubbish removal.</p>
+          </div>
+
+          <div className="mt-12 grid lg:grid-cols-12 gap-8 items-start">
+            <div className="lg:col-span-8 reveal">
+              <Accordion type="single" collapsible defaultValue="faq-0" className="rounded-2xl bg-white border border-navy/10 shadow-sm divide-y divide-navy/10 overflow-hidden">
+                {FAQS.map((f, i) => (
+                  <AccordionItem key={f.q} value={`faq-${i}`} className="border-b-0 px-5 sm:px-6">
+                    <AccordionTrigger className="py-5 text-left font-display text-base sm:text-lg text-navy hover:no-underline [&[data-state=open]]:text-navy">
+                      <span className="flex items-start gap-3">
+                        <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-yellow/30 text-navy">
+                          <HelpCircle className="h-4 w-4" />
+                        </span>
+                        {f.q}
+                      </span>
+                    </AccordionTrigger>
+                    <AccordionContent className="pb-5 pl-10 pr-2 text-navy/75 text-[15px] leading-relaxed">
+                      {f.a}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </div>
+
+            <aside className="lg:col-span-4 reveal">
+              <div className="rounded-2xl bg-navy text-white p-6 sm:p-7 shadow-xl relative overflow-hidden">
+                <div className="absolute -top-10 -right-10 h-40 w-40 rounded-full bg-yellow/20 blur-2xl" />
+                <p className="text-yellow text-xs font-bold uppercase tracking-wider relative">Still wondering?</p>
+                <h3 className="mt-2 font-display text-2xl relative">Ask us anything — we pick up the phone.</h3>
+                <p className="mt-3 text-white/75 text-sm relative">Send a photo of the job and we'll give you an honest, upfront price.</p>
+                <a href={TEL} className="mt-5 inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-5 py-3 font-semibold hover:-translate-y-0.5 transition-transform relative">
+                  <Phone className="h-4 w-4" /> Call {PHONE}
+                </a>
+                <a href="#quote" className="mt-3 inline-flex items-center gap-2 text-white/85 hover:text-yellow text-sm font-semibold relative">
+                  Or request a free quote <ArrowRight className="h-4 w-4" />
+                </a>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
       {/* QUOTE CTA + FORM */}
       <section id="quote" className="py-20 sm:py-28">
         <div className="mx-auto max-w-7xl px-4 sm:px-6">
