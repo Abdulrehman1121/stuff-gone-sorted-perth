@@ -560,13 +560,41 @@ function Index() {
         </div>
       </footer>
 
-      {/* Sticky mobile call */}
-      <a href={TEL} className="md:hidden fixed bottom-4 inset-x-4 z-50 inline-flex items-center justify-center gap-2 rounded-full bg-yellow text-navy py-4 font-display text-lg shadow-2xl shadow-navy/30 active:scale-95 transition-transform">
-        <Phone className="h-5 w-5" /> Call {PHONE}
+      {/* Floating WhatsApp (desktop + mobile) */}
+      <a
+        href={WHATSAPP_URL}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Message us on WhatsApp"
+        className="fixed bottom-24 right-4 md:bottom-6 md:right-6 z-50 inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white pl-3 pr-4 py-3 shadow-2xl shadow-[#25D366]/40 hover:-translate-y-0.5 transition-transform animate-pulse-slow"
+      >
+        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15">
+          <WhatsAppIcon className="h-5 w-5" />
+        </span>
+        <span className="hidden sm:inline font-semibold text-sm">Chat on WhatsApp</span>
       </a>
+
+      {/* Sticky mobile call/SMS bar */}
+      <div className="md:hidden fixed bottom-4 inset-x-4 z-50 grid grid-cols-2 gap-2">
+        <a href={TEL} className="inline-flex items-center justify-center gap-2 rounded-full bg-yellow text-navy py-3.5 font-display text-base shadow-2xl shadow-navy/30 active:scale-95 transition-transform">
+          <Phone className="h-5 w-5" /> Call
+        </a>
+        <a href={SMS_URL} className="inline-flex items-center justify-center gap-2 rounded-full bg-navy text-white py-3.5 font-display text-base shadow-2xl shadow-navy/30 active:scale-95 transition-transform">
+          <MessageSquare className="h-5 w-5" /> SMS
+        </a>
+      </div>
     </div>
   );
 }
+
+function WhatsAppIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
+      <path d="M19.11 4.91A10.05 10.05 0 0 0 12.04 2C6.55 2 2.1 6.45 2.1 11.94c0 1.93.5 3.81 1.46 5.48L2 22l4.7-1.23a9.93 9.93 0 0 0 5.33 1.52h.01c5.49 0 9.94-4.45 9.94-9.94 0-2.65-1.03-5.15-2.87-7.44Zm-7.07 15.27h-.01a8.23 8.23 0 0 1-4.2-1.15l-.3-.18-2.79.73.74-2.72-.2-.31a8.21 8.21 0 0 1-1.27-4.41c0-4.56 3.71-8.27 8.28-8.27 2.21 0 4.29.86 5.85 2.43a8.2 8.2 0 0 1 2.42 5.85c0 4.56-3.71 8.03-8.27 8.03Zm4.54-6.18c-.25-.12-1.47-.72-1.69-.8-.23-.08-.39-.12-.56.12-.16.25-.64.8-.78.96-.14.16-.29.18-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.38-1.72-.14-.25-.02-.39.11-.51.11-.11.25-.29.37-.43.12-.14.16-.25.25-.41.08-.16.04-.31-.02-.43-.06-.12-.56-1.35-.77-1.85-.2-.49-.41-.42-.56-.43h-.48c-.16 0-.43.06-.65.31-.22.25-.85.83-.85 2.03 0 1.2.87 2.36.99 2.52.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.18-.48-.3Z"/>
+    </svg>
+  );
+}
+
 
 function Field({ label, error, children }: { label: string; error?: string; children: React.ReactNode }) {
   return (
