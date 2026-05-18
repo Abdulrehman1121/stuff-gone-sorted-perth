@@ -50,6 +50,12 @@ const FAQS: { q: string; a: string }[] = [
 
 const PHONE = "0415 125 702";
 const TEL = "tel:0415125702";
+// International format for WhatsApp (Australia +61, drop leading 0)
+const WHATSAPP_NUMBER = "61415125702";
+const QUOTE_MSG =
+  "Hi Stuff Gone Sorted! I'd like a quote for rubbish removal in Perth.\n\n• Suburb: \n• What needs removing: \n• Preferred day/time: \n\n(Happy to send a photo too)";
+const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(QUOTE_MSG)}`;
+const SMS_URL = `sms:0415125702?&body=${encodeURIComponent(QUOTE_MSG)}`;
 
 export const Route = createFileRoute("/")({
   component: Index,
