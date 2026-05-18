@@ -128,6 +128,7 @@ function Index() {
     <div className="min-h-screen bg-background text-foreground">
       <Toaster position="top-center" richColors />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       {/* NAV */}
       <header className="sticky top-0 z-40 backdrop-blur bg-white/85 border-b border-border">
