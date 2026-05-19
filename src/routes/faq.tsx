@@ -44,9 +44,6 @@ function Faq() {
             className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center"
           >
             <div>
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-yellow/20 text-yellow mb-6">
-                <HelpCircle className="h-6 w-6" />
-              </div>
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
                 Frequently Asked <span className="text-yellow">Questions</span>
               </h1>
