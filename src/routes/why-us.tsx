@@ -1,0 +1,120 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { ShieldCheck, Clock, ThumbsUp, ArrowRight, DollarSign } from "lucide-react";
+import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
+import heroUte from "@/assets/hero-ute.jpg"; // Using this as the why-us hero
+
+export const Route = createFileRoute("/why-us")({
+  component: WhyUs,
+});
+
+const REASONS = [
+  {
+    title: "Fast & Reliable",
+    description: "We show up when we say we will. We understand your time is valuable, so we offer prompt service across Perth.",
+    icon: Clock,
+  },
+  {
+    title: "Fair, Upfront Prices",
+    description: "No hidden fees. We provide clear quotes based on the volume and type of rubbish, ensuring you know what to expect.",
+    icon: DollarSign,
+  },
+  {
+    title: "Licensed & Insured",
+    description: "Peace of mind is guaranteed. We are fully insured and handle all waste in accordance with local regulations.",
+    icon: ShieldCheck,
+  },
+  {
+    title: "Eco-Friendly Disposal",
+    description: "We don't just dump everything. We sort and recycle wherever possible to minimize landfill impact.",
+    icon: ThumbsUp,
+  },
+];
+
+function WhyUs() {
+  return (
+    <div className="min-h-screen bg-background text-foreground flex flex-col">
+      <header className="sticky top-0 z-40 backdrop-blur bg-white/85 border-b border-border">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
+          <Link to="/" className="flex items-center gap-2 group">
+            <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-10 w-10 rounded-full object-cover" />
+            <span className="font-display text-lg text-navy">Stuff Gone Sorted</span>
+          </Link>
+          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-navy/80">
+            <Link to="/services" className="hover:text-navy">Services</Link>
+            <Link to="/why-us" className="font-bold text-navy">Why us</Link>
+            <Link to="/how-it-works" className="hover:text-navy">How it works</Link>
+            <Link to="/faq" className="hover:text-navy">FAQ</Link>
+          </nav>
+          <Link to="/book" className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-4 py-2 text-sm font-semibold hover:bg-navy/90 transition-colors shadow-sm">
+            Book a Service
+          </Link>
+        </div>
+      </header>
+
+      <main className="flex-1">
+        {/* HERO */}
+        <section className="relative overflow-hidden bg-navy text-white pt-20 pb-28">
+          <div className="absolute inset-0 -z-10 bg-gradient-to-br from-navy via-navy to-[#1e3a8a] opacity-90" />
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center"
+          >
+            <div>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+                Why Choose <span className="text-yellow">Stuff Gone Sorted?</span>
+              </h1>
+              <p className="mt-6 text-lg text-white/80 max-w-xl">
+                We are a local Perth business dedicated to providing hassle-free, professional, and friendly rubbish removal services. We treat your property with respect.
+              </p>
+              <div className="mt-8">
+                <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold shadow-lg hover:-translate-y-0.5 transition-transform">
+                  Book Now <ArrowRight className="h-5 w-5" />
+                </Link>
+              </div>
+            </div>
+            <motion.div 
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
+            >
+              <img src={heroUte} alt="Our Team" className="w-full h-full object-cover" />
+            </motion.div>
+          </motion.div>
+        </section>
+
+        {/* FEATURES GRID */}
+        <section className="py-24 bg-white">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6">
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {REASONS.map((r, i) => (
+                <motion.div 
+                  key={r.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-all"
+                >
+                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-navy text-yellow mb-6">
+                    <r.icon className="h-7 w-7" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-navy mb-3">{r.title}</h3>
+                  <p className="text-navy/70 leading-relaxed text-sm">{r.description}</p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      </main>
+
+      {/* FOOTER */}
+      <footer className="bg-navy text-white py-10 text-center">
+        <p className="text-white/50 text-sm">© {new Date().getFullYear()} Stuff Gone Sorted. All rights reserved.</p>
+      </footer>
+    </div>
+  );
+}
