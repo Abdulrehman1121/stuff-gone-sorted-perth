@@ -1,8 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
-import { ArrowRight, HelpCircle } from "lucide-react";
-import faqHero from "@/assets/faq_hero.png";
+import { ArrowRight } from "lucide-react";
 
 export const Route = createFileRoute("/faq")({
   component: Faq,
@@ -35,30 +34,20 @@ function Faq() {
   return (
     <div className="bg-background text-foreground flex flex-col">
       <main className="flex-1">
-        <section className="relative overflow-hidden bg-navy text-white pt-20 pb-28">
+        <section className="relative overflow-hidden bg-navy text-white pt-20 pb-24 text-center">
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-navy via-navy to-[#1e3a8a] opacity-90" />
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center"
+            className="mx-auto max-w-3xl px-4 sm:px-6"
           >
-            <div>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
-                Frequently Asked <span className="text-yellow">Questions</span>
-              </h1>
-              <p className="mt-6 text-lg text-white/80 max-w-xl">
-                Got a question? We've got answers. If you can't find what you're looking for, feel free to give us a call.
-              </p>
-            </div>
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10"
-            >
-              <img src={faqHero} alt="Clean Garage" className="w-full h-full object-cover" />
-            </motion.div>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+              Frequently Asked <span className="text-yellow">Questions</span>
+            </h1>
+            <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto">
+              Got a question? We've got answers. If you can't find what you're looking for, feel free to give us a call.
+            </p>
           </motion.div>
         </section>
 

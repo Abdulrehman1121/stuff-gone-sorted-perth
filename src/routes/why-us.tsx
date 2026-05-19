@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ShieldCheck, Clock, ThumbsUp, ArrowRight, DollarSign } from "lucide-react";
-import heroUte from "@/assets/hero-ute.jpg"; // Using this as the why-us hero
 
 export const Route = createFileRoute("/why-us")({
   component: WhyUs,
@@ -35,35 +34,25 @@ function WhyUs() {
     <div className="bg-background text-foreground flex flex-col">
       <main className="flex-1">
         {/* HERO */}
-        <section className="relative overflow-hidden bg-navy text-white pt-20 pb-28">
+        <section className="relative overflow-hidden bg-navy text-white pt-20 pb-24 text-center">
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-navy via-navy to-[#1e3a8a] opacity-90" />
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-12 items-center"
+            className="mx-auto max-w-3xl px-4 sm:px-6"
           >
-            <div>
-              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
-                Why Choose <span className="text-yellow">HaulMate WA?</span>
-              </h1>
-              <p className="mt-6 text-lg text-white/80 max-w-xl">
-                We are a local Perth business dedicated to providing hassle-free, professional, and friendly rubbish removal services. We treat your property with respect.
-              </p>
-              <div className="mt-8">
-                <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold shadow-lg hover:-translate-y-0.5 transition-transform">
-                  Book Now <ArrowRight className="h-5 w-5" />
-                </Link>
-              </div>
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+              Why Choose <span className="text-yellow">HaulMate WA?</span>
+            </h1>
+            <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto">
+              We are a local Perth business dedicated to providing hassle-free, professional, and friendly rubbish removal services. We treat your property with respect.
+            </p>
+            <div className="mt-8">
+              <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold shadow-lg hover:-translate-y-0.5 transition-transform">
+                Book Now <ArrowRight className="h-5 w-5" />
+              </Link>
             </div>
-            <motion.div 
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl"
-            >
-              <img src={heroUte} alt="Our Team" className="w-full h-full object-cover" />
-            </motion.div>
           </motion.div>
         </section>
 

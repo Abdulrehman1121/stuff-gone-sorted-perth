@@ -20,7 +20,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Phone, Loader2, Upload, ArrowLeft, ArrowRight, ShieldCheck, ThumbsUp, Star } from "lucide-react";
 import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
-import heroUte from "@/assets/hero-ute.jpg";
 
 export const Route = createFileRoute("/book")({
   component: BookPage,
@@ -132,7 +131,6 @@ function BookPage() {
       {/* Attractive Hero Section */}
       <section className="relative overflow-hidden bg-navy text-white pt-16 pb-24">
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-navy via-navy to-[#1e3a8a] opacity-90" />
-        <div className="absolute inset-0 -z-20 opacity-10" style={{ backgroundImage: `url(${heroUte})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
         <div className="absolute -top-10 -right-10 h-64 w-64 rounded-full bg-yellow/10 blur-3xl" />
         
         <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center relative z-10">

@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { Phone, MapPin, Mail, MessageSquare } from "lucide-react";
-import heroUte from "@/assets/hero-ute.jpg"; // Using for contact hero bg
 
 export const Route = createFileRoute("/contact")({
   component: ContactPage,
@@ -18,9 +17,8 @@ function ContactPage() {
     <div className="bg-background text-foreground flex flex-col">
       <main className="flex-1">
         {/* HERO SECTION */}
-        <section className="relative overflow-hidden bg-navy text-white pt-20 pb-28">
+        <section className="relative overflow-hidden bg-navy text-white pt-20 pb-24 text-center">
           <div className="absolute inset-0 -z-10 bg-gradient-to-br from-navy via-navy to-[#1e3a8a] opacity-90" />
-          <div className="absolute inset-0 -z-20 opacity-20" style={{ backgroundImage: `url(${heroUte})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}

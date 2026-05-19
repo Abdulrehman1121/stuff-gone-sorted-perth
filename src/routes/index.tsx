@@ -4,12 +4,15 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Toaster, toast } from "sonner";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   Phone, ShieldCheck, MapPin, DollarSign,
   CheckCircle2, Send, Camera, ArrowRight, Weight, Clock, ThumbsUp
 } from "lucide-react";
 import heroUte from "@/assets/hero-ute.jpg";
+import servicesHero from "@/assets/services_hero.png";
+import howItWorksHero from "@/assets/how_it_works_hero.png";
+import faqHero from "@/assets/faq_hero.png";
 
 const PHONE = "0415 125 702";
 const TEL = "tel:0415125702";
@@ -50,6 +53,21 @@ function Index() {
   const {
     register, handleSubmit, formState: { errors, isSubmitting }, reset,
   } = useForm<FormVals>({ resolver: zodResolver(schema) });
+
+  const carouselImages = [
+    { src: heroUte, alt: "One tonne tray ute loaded with furniture and household rubbish in Perth" },
+    { src: servicesHero, alt: "HaulMate WA rubbish removal service in action" },
+    { src: howItWorksHero, alt: "Reliable rubbish disposal crew" },
+    { src: faqHero, alt: "Shed and garage cleanup service" }
+  ];
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
+    }, 4500);
+    return () => clearInterval(timer);
+  }, []);
 
   useEffect(() => {
     const l = document.createElement("link");
@@ -133,20 +151,39 @@ function Index() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="lg:col-span-6 relative"
           >
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-navy/20 ring-1 ring-navy/10">
-              <img
-                src={heroUte}
-                alt="One tonne tray ute loaded with furniture and household rubbish in Perth"
-                width={1280} height={1024}
-                className="absolute inset-0 h-full w-full object-cover scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-navy/30 via-transparent to-transparent" />
+            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-navy/20 ring-1 ring-navy/10 bg-slate-100">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentSlide}
+                  src={carouselImages[currentSlide].src}
+                  alt={carouselImages[currentSlide].alt}
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.8 }}
+                  className="absolute inset-0 h-full w-full object-cover"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-tr from-navy/30 via-transparent to-transparent pointer-events-none" />
+              
+              {/* Carousel Indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                {carouselImages.map((_, idx) => (
+                  <button
+                    key={idx}
+                    onClick={() => setCurrentSlide(idx)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      currentSlide === idx ? "w-6 bg-yellow" : "w-2 bg-white/60 hover:bg-white"
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
             <motion.div 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="absolute -top-5 -right-3 sm:-right-6 h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-yellow text-navy flex flex-col items-center justify-center text-center p-3 shadow-xl ring-4 ring-white"
+              className="absolute -top-5 -right-3 sm:-right-6 h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-yellow text-navy flex flex-col items-center justify-center text-center p-3 shadow-xl ring-4 ring-white z-10"
             >
               <Weight className="h-5 w-5 mb-1" />
               <div className="font-display text-sm sm:text-base leading-tight">ONE TONNE<br/>PAYLOAD</div>
