@@ -17,7 +17,7 @@ const SERVICES = [
     title: "Household Rubbish Removal",
     description: "From old mattresses to broken appliances, we clear out your household junk quickly and efficiently. No need to hire a skip bin — we load it all for you.",
     icon: Truck,
-    image: "https://images.unsplash.com/photo-1605600611270-ac52467b6287?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=800&q=80",
     bullets: [
       "Mattresses & bed frames",
       "Whitegoods (fridges, washing machines)",
@@ -109,11 +109,11 @@ function Services() {
                     transition={{ duration: 0.7 }}
                     className={`lg:col-span-6 ${!isEven ? "lg:order-2" : ""}`}
                   >
-                    <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-yellow/20 text-navy mb-6">
-                      <s.icon className="h-6 w-6" />
-                    </div>
-                    <h2 className="font-display text-3xl sm:text-4xl text-navy mb-4">
-                      {s.title}
+                    <h2 className="font-display text-3xl sm:text-4xl text-navy mb-4 flex items-center gap-3.5">
+                      <div className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-yellow/25 text-navy">
+                        <s.icon className="h-6 w-6" />
+                      </div>
+                      <span>{s.title}</span>
                     </h2>
                     <p className="text-navy/70 text-lg leading-relaxed mb-6">
                       {s.description}

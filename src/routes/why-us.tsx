@@ -4,34 +4,44 @@ import { ShieldCheck, Clock, ThumbsUp, ArrowRight, DollarSign } from "lucide-rea
 
 export const Route = createFileRoute("/why-us")({
   component: WhyUs,
+  head: () => ({
+    meta: [
+      { title: "Why Choose Us | Rubbish Removal Perth — HaulMate WA" },
+      { name: "description", content: "Discover why HaulMate WA is Perth's preferred rubbish removal provider. Fast service, transparent rates, fully insured, and eco-friendly waste management." },
+    ],
+  }),
 });
 
 const REASONS = [
   {
     title: "Fast & Reliable",
-    description: "We show up when we say we will. We understand your time is valuable, so we offer prompt service across Perth.",
+    description: "We show up when we say we will. We understand your time is valuable, so we offer prompt, dependable service across Perth Metro.",
     icon: Clock,
+    image: "https://images.unsplash.com/photo-1549194388-f61be84a6e46?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Fair, Upfront Prices",
-    description: "No hidden fees. We provide clear quotes based on the volume and type of rubbish, ensuring you know what to expect.",
+    description: "No hidden fees or surprise surcharges. We provide clear, itemized quotes based on the volume and type of rubbish, ensuring transparency.",
     icon: DollarSign,
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Licensed & Insured",
-    description: "Peace of mind is guaranteed. We are fully insured and handle all waste in accordance with local regulations.",
+    description: "Peace of mind is guaranteed. We are fully insured and handle all waste responsibly in accordance with local regulations.",
     icon: ShieldCheck,
+    image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Eco-Friendly Disposal",
-    description: "We don't just dump everything. We sort and recycle wherever possible to minimize landfill impact.",
+    description: "We care about the planet. We sort, reuse, and recycle your items wherever possible to minimize landfill impact in Western Australia.",
     icon: ThumbsUp,
+    image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80",
   },
 ];
 
 function WhyUs() {
   return (
-    <div className="bg-background text-foreground flex flex-col">
+    <div className="bg-background text-foreground flex flex-col min-h-screen">
       <main className="flex-1">
         {/* HERO */}
         <section className="relative overflow-hidden bg-navy text-white pt-20 pb-24 text-center">
@@ -56,28 +66,55 @@ function WhyUs() {
           </motion.div>
         </section>
 
-        {/* FEATURES GRID */}
-        <section className="py-24 bg-white">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6">
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-              {REASONS.map((r, i) => (
-                <motion.div 
-                  key={r.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="flex flex-col items-center text-center p-6 rounded-2xl bg-gray-50 border border-gray-100 hover:shadow-md transition-all"
-                >
-                  <div className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-navy text-yellow mb-6">
-                    <r.icon className="h-7 w-7" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-navy mb-3">{r.title}</h3>
-                  <p className="text-navy/70 leading-relaxed text-sm">{r.description}</p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+        {/* ALTERNATING REASONS SECTIONS */}
+        <section className="py-24 space-y-32 bg-white">
+          {REASONS.map((r, i) => {
+            const isEven = i % 2 === 0;
+            return (
+              <div key={r.title} className="mx-auto max-w-7xl px-4 sm:px-6">
+                <div className="grid lg:grid-cols-12 gap-12 items-center">
+                  
+                  {/* TEXT COLUMN */}
+                  <motion.div 
+                    initial={{ opacity: 0, x: isEven ? -50 : 50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.7 }}
+                    className={`lg:col-span-6 ${!isEven ? "lg:order-2" : ""}`}
+                  >
+                    <h2 className="font-display text-3xl sm:text-4xl text-navy mb-6 flex items-center gap-3.5">
+                      <div className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-yellow/25 text-navy">
+                        <r.icon className="h-6 w-6" />
+                      </div>
+                      <span>{r.title}</span>
+                    </h2>
+                    <p className="text-navy/70 text-lg leading-relaxed mb-6">
+                      {r.description}
+                    </p>
+                  </motion.div>
+
+                  {/* IMAGE COLUMN */}
+                  <motion.div 
+                    initial={{ opacity: 0, x: isEven ? 50 : -50 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    transition={{ duration: 0.7 }}
+                    className={`lg:col-span-6 ${!isEven ? "lg:order-1" : ""}`}
+                  >
+                    <div className="relative aspect-video sm:aspect-[4/3] rounded-3xl overflow-hidden shadow-xl hover:shadow-2xl transition-shadow duration-300 group border border-slate-100">
+                      <img 
+                        src={r.image} 
+                        alt={r.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
+                    </div>
+                  </motion.div>
+
+                </div>
+              </div>
+            );
+          })}
         </section>
       </main>
     </div>
