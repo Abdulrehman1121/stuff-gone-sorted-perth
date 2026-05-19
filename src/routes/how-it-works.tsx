@@ -85,6 +85,13 @@ function HowItWorks() {
                     <p className="text-navy/70 text-lg leading-relaxed mb-6">
                       {s.description}
                     </p>
+                    {i === 0 && (
+                      <div className="mt-4">
+                        <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3 font-semibold shadow hover:-translate-y-0.5 transition-transform text-sm">
+                          Book Now <ArrowRight className="h-4 w-4" />
+                        </Link>
+                      </div>
+                    )}
                   </motion.div>
 
                   {/* IMAGE COLUMN */}

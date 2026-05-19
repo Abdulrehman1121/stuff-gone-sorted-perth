@@ -17,7 +17,7 @@ const REASONS = [
     title: "Fast & Reliable",
     description: "We show up when we say we will. We understand your time is valuable, so we offer prompt, dependable service across Perth Metro.",
     icon: Clock,
-    image: "https://images.unsplash.com/photo-1549194388-f61be84a6e46?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1508847154043-be12a3b4d63e?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Fair, Upfront Prices",
