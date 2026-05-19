@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -150,7 +150,7 @@ function Index() {
             <a href="#why" className="hover:text-navy">Why us</a>
             <a href="#how" className="hover:text-navy">How it works</a>
             <a href="#faq" className="hover:text-navy">FAQ</a>
-            <a href="#quote" className="hover:text-navy">Free quote</a>
+            <Link to="/book" className="hover:text-navy font-bold text-navy">Book a Service</Link>
           </nav>
           <a href={TEL} className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-4 py-2 text-sm font-semibold hover:bg-navy/90 transition-colors shadow-sm">
             <Phone className="h-4 w-4" /> {PHONE}
@@ -175,14 +175,14 @@ function Index() {
               Fast, reliable <strong>rubbish removal across Perth</strong> with a one‑tonne tray ute. Furniture, garden waste, garage cleanouts and general junk — big or small, we haul it all.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href={TEL} className="inline-flex items-center gap-2 rounded-full bg-navy text-white px-6 py-3.5 font-semibold shadow-lg shadow-navy/20 hover:-translate-y-0.5 hover:shadow-xl transition-all">
+              <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold shadow-lg shadow-yellow/20 hover:-translate-y-0.5 hover:shadow-xl transition-all">
+                Book Now <ArrowRight className="h-5 w-5" />
+              </Link>
+              <a href={TEL} className="inline-flex items-center gap-2 rounded-full bg-navy text-white px-6 py-3.5 font-semibold hover:-translate-y-0.5 hover:bg-navy/90 transition-all">
                 <Phone className="h-5 w-5" /> Call {PHONE}
               </a>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-6 py-3.5 font-semibold shadow-lg shadow-[#25D366]/25 hover:-translate-y-0.5 hover:shadow-xl transition-all">
+              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-6 py-3.5 font-semibold hover:-translate-y-0.5 transition-all">
                 <WhatsAppIcon className="h-5 w-5" /> WhatsApp us
-              </a>
-              <a href="#quote" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold hover:-translate-y-0.5 hover:bg-yellow/90 transition-all">
-                Get a free quote <ArrowRight className="h-5 w-5" />
               </a>
             </div>
             <div className="mt-8 flex flex-wrap gap-2">
@@ -576,11 +576,11 @@ function Index() {
 
       {/* Sticky mobile call/SMS bar */}
       <div className="md:hidden fixed bottom-4 inset-x-4 z-50 grid grid-cols-2 gap-2">
-        <a href={TEL} className="inline-flex items-center justify-center gap-2 rounded-full bg-yellow text-navy py-3.5 font-display text-base shadow-2xl shadow-navy/30 active:scale-95 transition-transform">
+        <Link to="/book" className="inline-flex items-center justify-center gap-2 rounded-full bg-yellow text-navy py-3.5 font-display text-base shadow-2xl shadow-navy/30 active:scale-95 transition-transform">
+          Book Now
+        </Link>
+        <a href={TEL} className="inline-flex items-center justify-center gap-2 rounded-full bg-navy text-white py-3.5 font-display text-base shadow-2xl shadow-navy/30 active:scale-95 transition-transform">
           <Phone className="h-5 w-5" /> Call
-        </a>
-        <a href={SMS_URL} className="inline-flex items-center justify-center gap-2 rounded-full bg-navy text-white py-3.5 font-display text-base shadow-2xl shadow-navy/30 active:scale-95 transition-transform">
-          <MessageSquare className="h-5 w-5" /> SMS
         </a>
       </div>
     </div>
