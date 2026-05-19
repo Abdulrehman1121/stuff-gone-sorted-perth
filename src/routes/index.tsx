@@ -10,6 +10,7 @@ import {
   Zap, CheckCircle2, Star, Send, Camera, ArrowRight, Weight, HelpCircle,
 } from "lucide-react";
 import heroUte from "@/assets/hero-ute.jpg";
+import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
 import { useReveal } from "@/hooks/use-reveal";
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from "@/components/ui/accordion";
 
@@ -140,10 +141,7 @@ function Index() {
       <header className="sticky top-0 z-40 backdrop-blur bg-white/85 border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-2 group">
-            <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-yellow text-navy shadow-sm group-hover:rotate-6 transition-transform">
-              <Truck className="h-5 w-5" />
-            </span>
-            <span className="font-display text-lg text-navy">Stuff Gone Sorted</span>
+            <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-10 rounded" />
           </a>
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-navy/80">
             <a href="#services" className="hover:text-navy">Services</a>
@@ -178,10 +176,7 @@ function Index() {
                 Book Now <ArrowRight className="h-5 w-5" />
               </Link>
               <a href={TEL} className="inline-flex items-center gap-2 rounded-full bg-navy text-white px-6 py-3.5 font-semibold hover:-translate-y-0.5 hover:bg-navy/90 transition-all">
-                <Phone className="h-5 w-5" /> Call {PHONE}
-              </a>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-6 py-3.5 font-semibold hover:-translate-y-0.5 transition-all">
-                <WhatsAppIcon className="h-5 w-5" /> WhatsApp us
+                <Phone className="h-5 w-5" /> {PHONE}
               </a>
             </div>
             <div className="mt-8 flex flex-wrap gap-2">
@@ -529,10 +524,7 @@ function Index() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 grid md:grid-cols-3 gap-10">
           <div>
             <div className="flex items-center gap-2">
-              <span className="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-yellow text-navy">
-                <Truck className="h-5 w-5" />
-              </span>
-              <span className="font-display text-xl">Stuff Gone Sorted</span>
+              <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-10 rounded" />
             </div>
             <p className="mt-3 text-white/70 text-sm max-w-xs">Big or small, we haul it all. Fast, friendly rubbish removal across Perth, WA.</p>
           </div>
