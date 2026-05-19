@@ -1,7 +1,7 @@
 import { sendLovableEmail } from "@lovable.dev/email-js";
 
 const BUSINESS_EMAIL = "abdulrehmankaleem195@gmail.com";
-const BUSINESS_NAME = "Stuff Gone Sorted";
+const BUSINESS_NAME = "HaulMate WA";
 const BUSINESS_PHONE = "0415 125 702";
 
 function getSenderDomain() {
@@ -124,7 +124,7 @@ export function newBookingEmail(b: BookingForEmail, adminUrl: string) {
     </div>
   </div>`;
   const text = `New booking from ${b.full_name} (${b.email}, ${b.phone}) in ${b.suburb}. Service: ${b.service_type}. Preferred: ${b.preferred_date} ${b.preferred_time}. Admin: ${adminUrl}`;
-  return { subject: "New Booking Request - Stuff Gone Sorted", html, text };
+  return { subject: "New Booking Request - HaulMate WA", html, text };
 }
 
 export function approvedBookingEmail(b: BookingForEmail) {
@@ -154,7 +154,7 @@ export function approvedBookingEmail(b: BookingForEmail) {
     </div>
   </div>`;
   const text = `Hi ${b.full_name}, your booking is approved. Service: ${b.service_type}. Date: ${date}. Time: ${time}. Location: ${b.suburb}. Call ${BUSINESS_PHONE} if you need anything. — ${BUSINESS_NAME}`;
-  return { subject: "Your Booking Has Been Approved - Stuff Gone Sorted", html, text };
+  return { subject: "Your Booking Has Been Approved - HaulMate WA", html, text };
 }
 
 export function rejectedBookingEmail(b: BookingForEmail, adminNote?: string) {
@@ -174,5 +174,5 @@ export function rejectedBookingEmail(b: BookingForEmail, adminNote?: string) {
     </div>
   </div>`;
   const text = `Hi ${b.full_name}, we couldn't confirm your booking. Please call ${BUSINESS_PHONE} to arrange another time. — ${BUSINESS_NAME}`;
-  return { subject: "Update on Your Booking Request - Stuff Gone Sorted", html, text };
+  return { subject: "Update on Your Booking Request - HaulMate WA", html, text };
 }

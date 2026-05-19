@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Truck, Recycle, CalendarClock } from "lucide-react";
-import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
 import servicesHero from "@/assets/services_hero.png";
 
 export const Route = createFileRoute("/services")({
@@ -33,26 +32,7 @@ const SERVICES = [
 
 function Services() {
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      {/* NAV (Simplified for inner pages) */}
-      <header className="sticky top-0 z-40 backdrop-blur bg-white/85 border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-10 w-10 rounded-full object-cover" />
-            <span className="font-display text-lg text-navy">Stuff Gone Sorted</span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-navy/80">
-            <Link to="/" className="hover:text-navy">Home</Link>
-            <Link to="/why-us" className="hover:text-navy">Why us</Link>
-            <Link to="/how-it-works" className="hover:text-navy">How it works</Link>
-            <Link to="/faq" className="hover:text-navy">FAQ</Link>
-          </nav>
-          <Link to="/book" className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-4 py-2 text-sm font-semibold hover:bg-navy/90 transition-colors shadow-sm">
-            Book a Service
-          </Link>
-        </div>
-      </header>
-
+    <div className="bg-background text-foreground flex flex-col">
       <main className="flex-1">
         {/* HERO SECTION */}
         <section className="relative overflow-hidden bg-navy text-white pt-20 pb-28">
@@ -115,11 +95,6 @@ function Services() {
           </div>
         </section>
       </main>
-
-      {/* FOOTER */}
-      <footer className="bg-navy text-white py-10 text-center">
-        <p className="text-white/50 text-sm">© {new Date().getFullYear()} Stuff Gone Sorted. All rights reserved.</p>
-      </footer>
     </div>
   );
 }

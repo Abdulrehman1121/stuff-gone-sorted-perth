@@ -73,15 +73,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
       { title: "Lovable App" },
-      { name: "description", content: "Stuff Gone Sorted offers fast, reliable rubbish removal services in Perth, Australia." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Stuff Gone Sorted offers fast, reliable rubbish removal services in Perth, Australia." },
+      { name: "description", content: "HaulMate WA offers fast, reliable rubbish removal services in Perth, Australia." },
+      { name: "author", content: "HaulMate WA" },
+      { property: "og:title", content: "HaulMate WA | Rubbish Removal Perth" },
+      { property: "og:description", content: "HaulMate WA offers fast, reliable rubbish removal services in Perth, Australia." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "Stuff Gone Sorted offers fast, reliable rubbish removal services in Perth, Australia." },
+      { name: "twitter:site", content: "@HaulMateWA" },
+      { name: "twitter:title", content: "HaulMate WA" },
+      { name: "twitter:description", content: "HaulMate WA offers fast, reliable rubbish removal services in Perth, Australia." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b69df586-3e3e-476d-826c-4b6fe382c89f/id-preview-21f790ed--07f8a326-4303-4b0e-aa1c-25cb85bcf577.lovable.app-1779103266743.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/b69df586-3e3e-476d-826c-4b6fe382c89f/id-preview-21f790ed--07f8a326-4303-4b0e-aa1c-25cb85bcf577.lovable.app-1779103266743.png" },
     ],
@@ -112,12 +112,25 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+import { Navbar } from "@/components/layout/Navbar";
+import { Footer } from "@/components/layout/Footer";
+import { BackToTop } from "@/components/layout/BackToTop";
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const router = useRouter();
+  
+  // Do not show the main Navbar/Footer on admin dashboard if desired, 
+  // but for simplicity we will wrap everything. 
+  // Wait, let's just use it everywhere.
+  const isAdmin = router.state.location.pathname.startsWith('/admin');
 
   return (
     <QueryClientProvider client={queryClient}>
+      {!isAdmin && <Navbar />}
       <Outlet />
+      {!isAdmin && <Footer />}
+      {!isAdmin && <BackToTop />}
     </QueryClientProvider>
   );
 }

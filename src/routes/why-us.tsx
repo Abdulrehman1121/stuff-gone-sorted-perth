@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ShieldCheck, Clock, ThumbsUp, ArrowRight, DollarSign } from "lucide-react";
-import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
 import heroUte from "@/assets/hero-ute.jpg"; // Using this as the why-us hero
 
 export const Route = createFileRoute("/why-us")({
@@ -33,25 +32,7 @@ const REASONS = [
 
 function WhyUs() {
   return (
-    <div className="min-h-screen bg-background text-foreground flex flex-col">
-      <header className="sticky top-0 z-40 backdrop-blur bg-white/85 border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-10 w-10 rounded-full object-cover" />
-            <span className="font-display text-lg text-navy">Stuff Gone Sorted</span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-navy/80">
-            <Link to="/services" className="hover:text-navy">Services</Link>
-            <Link to="/why-us" className="font-bold text-navy">Why us</Link>
-            <Link to="/how-it-works" className="hover:text-navy">How it works</Link>
-            <Link to="/faq" className="hover:text-navy">FAQ</Link>
-          </nav>
-          <Link to="/book" className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-4 py-2 text-sm font-semibold hover:bg-navy/90 transition-colors shadow-sm">
-            Book a Service
-          </Link>
-        </div>
-      </header>
-
+    <div className="bg-background text-foreground flex flex-col">
       <main className="flex-1">
         {/* HERO */}
         <section className="relative overflow-hidden bg-navy text-white pt-20 pb-28">
@@ -64,7 +45,7 @@ function WhyUs() {
           >
             <div>
               <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
-                Why Choose <span className="text-yellow">Stuff Gone Sorted?</span>
+                Why Choose <span className="text-yellow">HaulMate WA?</span>
               </h1>
               <p className="mt-6 text-lg text-white/80 max-w-xl">
                 We are a local Perth business dedicated to providing hassle-free, professional, and friendly rubbish removal services. We treat your property with respect.
@@ -110,11 +91,6 @@ function WhyUs() {
           </div>
         </section>
       </main>
-
-      {/* FOOTER */}
-      <footer className="bg-navy text-white py-10 text-center">
-        <p className="text-white/50 text-sm">© {new Date().getFullYear()} Stuff Gone Sorted. All rights reserved.</p>
-      </footer>
     </div>
   );
 }

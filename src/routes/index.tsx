@@ -6,33 +6,30 @@ import { z } from "zod";
 import { Toaster, toast } from "sonner";
 import { motion } from "framer-motion";
 import {
-  Phone, MessageSquare, ShieldCheck, MapPin, DollarSign,
+  Phone, ShieldCheck, MapPin, DollarSign,
   CheckCircle2, Send, Camera, ArrowRight, Weight, Clock, ThumbsUp
 } from "lucide-react";
 import heroUte from "@/assets/hero-ute.jpg";
-import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
 
 const PHONE = "0415 125 702";
 const TEL = "tel:0415125702";
-// International format for WhatsApp (Australia +61, drop leading 0)
 const WHATSAPP_NUMBER = "61415125702";
 const QUOTE_MSG =
-  "Hi Stuff Gone Sorted! I'd like a quote for rubbish removal in Perth.\n\n• Suburb: \n• What needs removing: \n• Preferred day/time: \n\n(Happy to send a photo too)";
+  "Hi HaulMate WA! I'd like a quote for rubbish removal in Perth.\n\n• Suburb: \n• What needs removing: \n• Preferred day/time: \n\n(Happy to send a photo too)";
 const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(QUOTE_MSG)}`;
-const SMS_URL = `sms:0415125702?&body=${encodeURIComponent(QUOTE_MSG)}`;
 
 export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "Stuff Gone Sorted | Rubbish Removal Perth — One Tonne Ute" },
+      { title: "HaulMate WA | Rubbish Removal Perth — One Tonne Ute" },
       {
         name: "description",
         content:
           "Fast, reliable rubbish removal Perth. Furniture removal, garden waste, garage cleanouts & junk removal with a one tonne tray ute. Call 0415 125 702 for a free quote.",
       },
       { name: "keywords", content: "rubbish removal Perth, furniture removal Perth, garden waste removal Perth, garage cleanouts Perth, junk removal Perth, one tonne ute rubbish removal, fast local rubbish removal" },
-      { property: "og:title", content: "Stuff Gone Sorted | Rubbish Removal Perth" },
+      { property: "og:title", content: "HaulMate WA | Rubbish Removal Perth" },
       { property: "og:description", content: "Fast, reliable rubbish removal across Perth. Call 0415 125 702 for a free quote." },
       { property: "og:type", content: "website" },
     ],
@@ -55,7 +52,6 @@ function Index() {
   } = useForm<FormVals>({ resolver: zodResolver(schema) });
 
   useEffect(() => {
-    // Load Google fonts
     const l = document.createElement("link");
     l.rel = "stylesheet";
     l.href = "https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap";
@@ -71,11 +67,10 @@ function Index() {
     setPhotoName(null);
   };
 
-  // JSON-LD
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    name: "Stuff Gone Sorted",
+    name: "HaulMate WA",
     description: "Fast, reliable rubbish removal across Perth with a one-tonne tray ute.",
     telephone: "+61415125702",
     areaServed: "Perth, Western Australia",
@@ -84,28 +79,9 @@ function Index() {
   };
 
   return (
-    <div className="min-h-screen bg-background text-foreground overflow-x-hidden">
+    <div className="bg-background text-foreground overflow-x-hidden">
       <Toaster position="top-center" richColors />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-
-      {/* NAV */}
-      <header className="sticky top-0 z-40 backdrop-blur bg-white/85 border-b border-border">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-2 group">
-            <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-10 w-10 rounded-full object-cover" />
-            <span className="font-display text-lg text-navy">Stuff Gone Sorted</span>
-          </Link>
-          <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-navy/80">
-            <Link to="/services" className="hover:text-navy transition-colors">Services</Link>
-            <Link to="/why-us" className="hover:text-navy transition-colors">Why us</Link>
-            <Link to="/how-it-works" className="hover:text-navy transition-colors">How it works</Link>
-            <Link to="/faq" className="hover:text-navy transition-colors">FAQ</Link>
-          </nav>
-          <Link to="/book" className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-4 py-2 text-sm font-semibold hover:bg-navy/90 transition-colors shadow-sm">
-            Book a Service
-          </Link>
-        </div>
-      </header>
 
       {/* HERO */}
       <section id="top" className="relative overflow-hidden">
@@ -166,7 +142,6 @@ function Index() {
               />
               <div className="absolute inset-0 bg-gradient-to-tr from-navy/30 via-transparent to-transparent" />
             </div>
-            {/* Floating badge */}
             <motion.div 
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -372,62 +347,6 @@ function Index() {
           </div>
         </div>
       </section>
-
-      {/* FOOTER */}
-      <footer className="bg-navy text-white pt-14 pb-28 md:pb-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 grid md:grid-cols-3 gap-10">
-          <div>
-            <div className="flex items-center gap-2">
-              <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-12 w-12 rounded-full object-cover" />
-            </div>
-            <p className="mt-3 text-white/70 text-sm max-w-xs">Big or small, we haul it all. Fast, friendly rubbish removal across Perth, WA.</p>
-          </div>
-          <div className="text-sm">
-            <div className="font-display text-lg mb-3">Contact</div>
-            <a href={TEL} className="block hover:text-yellow"><Phone className="inline h-4 w-4 mr-2" />{PHONE}</a>
-            <div className="mt-2 text-white/70"><MapPin className="inline h-4 w-4 mr-2" />Servicing Perth, Australia</div>
-            <div className="mt-2 text-white/70"><ShieldCheck className="inline h-4 w-4 mr-2" />Licensed & Insured</div>
-            <div className="mt-2 text-white/70"><MessageSquare className="inline h-4 w-4 mr-2" />Call or message for a free quote</div>
-          </div>
-          <div className="text-sm">
-            <div className="font-display text-lg mb-3">Site Links</div>
-            <ul className="space-y-1.5 text-white/70">
-              <li><Link to="/services" className="hover:text-yellow">Services</Link></li>
-              <li><Link to="/why-us" className="hover:text-yellow">Why Us</Link></li>
-              <li><Link to="/how-it-works" className="hover:text-yellow">How it works</Link></li>
-              <li><Link to="/faq" className="hover:text-yellow">FAQ</Link></li>
-              <li><Link to="/book" className="hover:text-yellow">Book Now</Link></li>
-            </ul>
-          </div>
-        </div>
-        <div className="mt-10 border-t border-white/10 pt-6 text-center text-xs text-white/50">
-          © {new Date().getFullYear()} Stuff Gone Sorted. All rights reserved.
-        </div>
-      </footer>
-
-      {/* Floating WhatsApp */}
-      <a
-        href={WHATSAPP_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        aria-label="Message us on WhatsApp"
-        className="fixed bottom-24 right-4 md:bottom-6 md:right-6 z-50 inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white pl-3 pr-4 py-3 shadow-2xl hover:-translate-y-0.5 transition-transform"
-      >
-        <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15">
-          <WhatsAppIcon className="h-5 w-5" />
-        </span>
-        <span className="hidden sm:inline font-semibold text-sm">Chat on WhatsApp</span>
-      </a>
-
-      {/* Sticky mobile call/SMS bar */}
-      <div className="md:hidden fixed bottom-4 inset-x-4 z-50 grid grid-cols-2 gap-2">
-        <Link to="/book" className="inline-flex items-center justify-center gap-2 rounded-full bg-yellow text-navy py-3.5 font-display text-base shadow-2xl shadow-navy/30 active:scale-95 transition-transform">
-          Book Now
-        </Link>
-        <a href={TEL} className="inline-flex items-center justify-center gap-2 rounded-full bg-navy text-white py-3.5 font-display text-base shadow-2xl shadow-navy/30 active:scale-95 transition-transform">
-          <Phone className="h-5 w-5" /> Call
-        </a>
-      </div>
     </div>
   );
 }

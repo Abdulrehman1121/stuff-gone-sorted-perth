@@ -23,7 +23,7 @@ export const Route = createFileRoute("/book")({
   component: BookPage,
   head: () => ({
     meta: [
-      { title: "Book Rubbish Removal in Perth — Stuff Gone Sorted" },
+      { title: "Book Rubbish Removal in Perth — HaulMate WA" },
       { name: "description", content: "Book your rubbish removal in Perth. Choose your preferred date and time — fast local rubbish removal with approval confirmation." },
     ],
   }),
@@ -107,17 +107,14 @@ function BookPage() {
 
   return (
     <div className="min-h-screen bg-slate-50">
-      <header className="bg-navy text-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-6">
-          <Link to="/" className="inline-flex items-center gap-1 text-xs text-yellow hover:underline">
-            <ArrowLeft className="h-3 w-3" /> Back to site
-          </Link>
-          <h1 className="font-display text-3xl sm:text-4xl mt-2">Book your rubbish removal in Perth</h1>
+      <section className="bg-navy text-white">
+        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
+          <h1 className="font-display text-3xl sm:text-4xl">Book your rubbish removal in Perth</h1>
           <p className="text-slate-300 mt-2 max-w-2xl">
             Fast local rubbish removal with approval confirmation. Choose your preferred date and time — we'll review and confirm by email or phone.
           </p>
         </div>
-      </header>
+      </section>
 
       <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
         <form onSubmit={onSubmit} className="space-y-8 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 animate-[fade-up_0.6s_ease-out_both]">
