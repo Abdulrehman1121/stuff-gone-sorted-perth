@@ -3,6 +3,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { motion, AnimatePresence } from "framer-motion";
 import { supabase } from "@/integrations/supabase/client";
 import { submitBooking } from "@/lib/bookings.functions";
 import {
@@ -17,7 +18,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { CheckCircle2, Phone, Loader2, Upload, ArrowLeft } from "lucide-react";
+import { CheckCircle2, Phone, Loader2, Upload, ArrowLeft, ArrowRight, ShieldCheck, ThumbsUp, Star } from "lucide-react";
+import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
 
 export const Route = createFileRoute("/book")({
   component: BookPage,
@@ -31,6 +33,7 @@ export const Route = createFileRoute("/book")({
 
 function BookPage() {
   const submit = useServerFn(submitBooking);
+  const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -67,6 +70,24 @@ function BookPage() {
     form.setValue("photo_url", data.publicUrl);
   };
 
+  const nextStep = async () => {
+    let fieldsToValidate: Array<keyof BookingInput> = [];
+    if (step === 1) {
+      fieldsToValidate = ["full_name", "email", "phone", "suburb", "street_address", "contact_method"];
+    } else if (step === 2) {
+      fieldsToValidate = ["service_type", "load_size", "item_description", "access_notes"];
+    }
+
+    const isValid = await form.trigger(fieldsToValidate);
+    if (isValid) {
+      setStep((prev) => prev + 1);
+    }
+  };
+
+  const prevStep = () => {
+    setStep((prev) => prev - 1);
+  };
+
   const onSubmit = form.handleSubmit(async (values) => {
     setServerError(null);
     setSubmitting(true);
@@ -83,20 +104,20 @@ function BookPage() {
 
   if (submitted) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-navy to-[#0a142e] flex items-center justify-center px-4 py-12">
-        <div className="max-w-lg w-full bg-white rounded-2xl shadow-2xl p-8 text-center animate-[fade-up_0.6s_ease-out_both]">
+      <div className="min-h-[85vh] bg-slate-50 flex items-center justify-center px-4 py-8">
+        <div className="max-w-lg w-full bg-white rounded-2xl shadow-xl p-8 text-center border border-slate-100">
           <div className="h-16 w-16 rounded-full bg-emerald-100 mx-auto flex items-center justify-center">
             <CheckCircle2 className="h-9 w-9 text-emerald-600" />
           </div>
-          <h1 className="font-display text-2xl text-navy mt-4">Booking received</h1>
+          <h1 className="font-display text-2xl text-navy mt-4">Booking Request Received</h1>
           <p className="text-slate-600 mt-2">
-            Thanks! Your booking request has been received. We'll review your details and confirm by email or phone shortly.
+            Thanks! Your booking request has been received. We will review your details and confirm your slot by email or phone shortly.
           </p>
           <div className="mt-6 flex flex-wrap gap-2 justify-center">
-            <a href="tel:0415125702" className="inline-flex items-center gap-2 bg-yellow text-navy font-semibold px-4 py-2 rounded-lg">
+            <a href="tel:0415125702" className="inline-flex items-center gap-2 bg-yellow text-navy font-semibold px-4 py-2.5 rounded-full hover:bg-yellow/90 shadow transition-colors">
               <Phone className="h-4 w-4" /> 0415 125 702
             </a>
-            <Link to="/" className="inline-flex items-center gap-2 border border-slate-300 px-4 py-2 rounded-lg text-navy">
+            <Link to="/" className="inline-flex items-center gap-2 border border-slate-300 px-4 py-2.5 rounded-full text-navy hover:bg-slate-50 transition-colors">
               Back to home
             </Link>
           </div>
@@ -106,147 +127,258 @@ function BookPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <section className="bg-navy text-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 py-10">
-          <h1 className="font-display text-3xl sm:text-4xl">Book your rubbish removal in Perth</h1>
-          <p className="text-slate-300 mt-2 max-w-2xl">
-            Fast local rubbish removal with approval confirmation. Choose your preferred date and time — we'll review and confirm by email or phone.
-          </p>
-        </div>
-      </section>
-
-      <main className="max-w-3xl mx-auto px-4 sm:px-6 py-8">
-        <form onSubmit={onSubmit} className="space-y-8 bg-white rounded-2xl shadow-sm border border-slate-200 p-6 sm:p-8 animate-[fade-up_0.6s_ease-out_both]">
-          <Section title="Your details">
-            <Grid>
-              <FormField label="Full name" error={form.formState.errors.full_name?.message}>
-                <Input {...form.register("full_name")} placeholder="Jane Smith" />
-              </FormField>
-              <FormField label="Email" error={form.formState.errors.email?.message}>
-                <Input type="email" {...form.register("email")} placeholder="you@example.com" />
-              </FormField>
-              <FormField label="Phone" error={form.formState.errors.phone?.message}>
-                <Input {...form.register("phone")} placeholder="0415 ..." />
-              </FormField>
-              <FormField label="Suburb" error={form.formState.errors.suburb?.message}>
-                <Input {...form.register("suburb")} placeholder="e.g. Scarborough" />
-              </FormField>
-              <FormField label="Street address (optional)" className="sm:col-span-2">
-                <Input {...form.register("street_address")} placeholder="123 Example St" />
-              </FormField>
-              <FormField label="Preferred contact method">
-                <NativeSelect {...form.register("contact_method")}>
-                  {CONTACT_METHODS.map((m) => <option key={m} value={m}>{m}</option>)}
-                </NativeSelect>
-              </FormField>
-            </Grid>
-          </Section>
-
-          <Section title="Service details">
-            <Grid>
-              <FormField label="Service type" error={form.formState.errors.service_type?.message}>
-                <NativeSelect {...form.register("service_type")}>
-                  {SERVICE_TYPES.map((s) => <option key={s} value={s}>{s}</option>)}
-                </NativeSelect>
-              </FormField>
-              <FormField label="Approximate load size">
-                <NativeSelect {...form.register("load_size")}>
-                  {LOAD_SIZES.map((s) => <option key={s} value={s}>{s}</option>)}
-                </NativeSelect>
-              </FormField>
-              <FormField label="Description of items" className="sm:col-span-2">
-                <Textarea rows={3} {...form.register("item_description")} placeholder="e.g. old couch, fridge, garden waste bags…" />
-              </FormField>
-              <FormField label="Access notes" className="sm:col-span-2">
-                <Textarea rows={2} {...form.register("access_notes")} placeholder="Stairs, lift access, driveway, street parking, heavy items, etc." />
-              </FormField>
-              <FormField label="Photo (optional)" className="sm:col-span-2">
-                <label className="flex items-center gap-3 border border-dashed border-slate-300 rounded-lg p-3 cursor-pointer hover:border-navy/40">
-                  <Upload className="h-4 w-4 text-navy" />
-                  <span className="text-sm text-slate-600">
-                    {uploading ? "Uploading…" : photoUrl ? "Photo uploaded ✓ (tap to replace)" : "Tap to add a photo of the items"}
+    <div className="min-h-[85vh] bg-slate-50 flex items-center justify-center px-4 py-8 md:py-12">
+      <div className="max-w-5xl w-full bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden grid md:grid-cols-12 min-h-[580px]">
+        
+        {/* LEFT COLUMN: Sidebar info */}
+        <div className="md:col-span-4 bg-navy text-white p-8 flex flex-col justify-between relative overflow-hidden">
+          <div className="absolute -top-10 -left-10 h-32 w-32 rounded-full bg-yellow/10 blur-2xl" />
+          <div className="absolute -bottom-10 -right-10 h-32 w-32 rounded-full bg-yellow/10 blur-2xl" />
+          
+          <div className="relative">
+            <div className="flex items-center gap-2 mb-8">
+              <img src={logoImage} alt="HaulMate WA" className="h-8 w-8 rounded-full object-cover" />
+              <span className="font-display text-lg tracking-wide">HaulMate WA</span>
+            </div>
+            
+            <h2 className="font-display text-2xl sm:text-3xl leading-tight mb-4 text-yellow">
+              Book Your Rubbish Removal
+            </h2>
+            <p className="text-sm text-slate-300 mb-8 leading-relaxed">
+              Fill in your details in 3 quick steps. We'll confirm your slot rapidly.
+            </p>
+            
+            {/* Step Indicators */}
+            <div className="space-y-4">
+              {[
+                { number: 1, label: "Your Details" },
+                { number: 2, label: "Service Details" },
+                { number: 3, label: "Preferred Schedule" },
+              ].map((s) => (
+                <div key={s.number} className="flex items-center gap-3">
+                  <div className={`h-8 w-8 rounded-full flex items-center justify-center font-bold text-sm transition-colors duration-300 ${
+                    step === s.number
+                      ? "bg-yellow text-navy"
+                      : step > s.number
+                      ? "bg-emerald-500 text-white"
+                      : "bg-white/10 text-white/60"
+                  }`}>
+                    {step > s.number ? "✓" : s.number}
+                  </div>
+                  <span className={`text-sm font-semibold transition-colors duration-300 ${
+                    step === s.number ? "text-white" : "text-white/50"
+                  }`}>
+                    {s.label}
                   </span>
-                  <input
-                    type="file"
-                    accept="image/*"
-                    className="hidden"
-                    onChange={(e) => e.target.files?.[0] && onUpload(e.target.files[0])}
-                  />
-                </label>
-                {photoUrl && (
-                  <img src={photoUrl} alt="Uploaded" className="mt-2 h-24 w-24 object-cover rounded-lg border" />
-                )}
-              </FormField>
-            </Grid>
-          </Section>
-
-          <Section title="Preferred schedule">
-            <Grid>
-              <FormField label="Preferred date" error={form.formState.errors.preferred_date?.message}>
-                <Input type="date" {...form.register("preferred_date")} />
-              </FormField>
-              <FormField label="Preferred time" error={form.formState.errors.preferred_time?.message}>
-                <Input type="time" {...form.register("preferred_time")} />
-              </FormField>
-              <FormField label="Alternative date">
-                <Input type="date" {...form.register("alternative_date")} />
-              </FormField>
-              <FormField label="Alternative time">
-                <Input type="time" {...form.register("alternative_time")} />
-              </FormField>
-              <FormField label="Urgency" className="sm:col-span-2">
-                <NativeSelect {...form.register("urgency")}>
-                  {URGENCIES.map((u) => <option key={u} value={u}>{u}</option>)}
-                </NativeSelect>
-              </FormField>
-            </Grid>
-          </Section>
-
-          {serverError && <p className="text-sm text-destructive">{serverError}</p>}
-
-          <div className="flex flex-wrap items-center gap-3">
-            <Button type="submit" disabled={submitting} className="bg-yellow text-navy hover:bg-yellow/90 font-bold px-6 h-12 text-base">
-              {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Request pickup time"}
-            </Button>
-            <a href="tel:0415125702" className="inline-flex items-center gap-2 text-navy font-semibold">
-              <Phone className="h-4 w-4" /> Or call 0415 125 702
-            </a>
+                </div>
+              ))}
+            </div>
           </div>
-          <p className="text-xs text-muted-foreground">
-            Bookings stay <strong>Pending Approval</strong> until we confirm. We'll email or call you with the approved date and time.
-          </p>
-        </form>
-      </main>
+
+          <div className="relative mt-8 space-y-3 border-t border-white/10 pt-6">
+            <div className="flex items-center gap-2 text-xs text-slate-300">
+              <ShieldCheck className="h-4 w-4 text-yellow" />
+              Fully Licensed & Insured
+            </div>
+            <div className="flex items-center gap-2 text-xs text-slate-300">
+              <Star className="h-4 w-4 text-yellow" />
+              Perth's Top-Rated Local Team
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT COLUMN: The Step Form */}
+        <div className="md:col-span-8 p-6 sm:p-10 flex flex-col justify-between min-h-[500px]">
+          <div>
+            {/* Header progress */}
+            <div className="flex justify-between items-center mb-6">
+              <span className="text-xs font-semibold text-slate-400 uppercase tracking-wider">
+                Step {step} of 3
+              </span>
+              <div className="h-1.5 w-32 bg-slate-100 rounded-full overflow-hidden">
+                <div 
+                  className="h-full bg-yellow transition-all duration-300"
+                  style={{ width: `${(step / 3) * 100}%` }}
+                />
+              </div>
+            </div>
+
+            <form onSubmit={onSubmit} className="space-y-6" noValidate>
+              <AnimatePresence mode="wait">
+                {step === 1 && (
+                  <motion.div
+                    key="step-1"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-4"
+                  >
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <FormField label="Full name" error={form.formState.errors.full_name?.message}>
+                        <Input {...form.register("full_name")} placeholder="Jane Smith" className="rounded-xl border-slate-200" />
+                      </FormField>
+                      <FormField label="Email" error={form.formState.errors.email?.message}>
+                        <Input type="email" {...form.register("email")} placeholder="you@example.com" className="rounded-xl border-slate-200" />
+                      </FormField>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <FormField label="Phone number" error={form.formState.errors.phone?.message}>
+                        <Input {...form.register("phone")} placeholder="0415 ..." className="rounded-xl border-slate-200" />
+                      </FormField>
+                      <FormField label="Suburb" error={form.formState.errors.suburb?.message}>
+                        <Input {...form.register("suburb")} placeholder="e.g. Scarborough" className="rounded-xl border-slate-200" />
+                      </FormField>
+                    </div>
+
+                    <div className="grid sm:grid-cols-3 gap-4">
+                      <div className="sm:col-span-2">
+                        <FormField label="Street address (optional)">
+                          <Input {...form.register("street_address")} placeholder="123 Example St" className="rounded-xl border-slate-200" />
+                        </FormField>
+                      </div>
+                      <FormField label="Preferred contact method">
+                        <NativeSelect {...form.register("contact_method")}>
+                          {CONTACT_METHODS.map((m) => <option key={m} value={m}>{m}</option>)}
+                        </NativeSelect>
+                      </FormField>
+                    </div>
+                  </motion.div>
+                )}
+
+                {step === 2 && (
+                  <motion.div
+                    key="step-2"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-4"
+                  >
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <FormField label="Service type" error={form.formState.errors.service_type?.message}>
+                        <NativeSelect {...form.register("service_type")}>
+                          {SERVICE_TYPES.map((s) => <option key={s} value={s}>{s}</option>)}
+                        </NativeSelect>
+                      </FormField>
+                      <FormField label="Approximate load size">
+                        <NativeSelect {...form.register("load_size")}>
+                          {LOAD_SIZES.map((s) => <option key={s} value={s}>{s}</option>)}
+                        </NativeSelect>
+                      </FormField>
+                    </div>
+
+                    <FormField label="Description of items" error={form.formState.errors.item_description?.message}>
+                      <Textarea rows={3} {...form.register("item_description")} placeholder="e.g. old couch, fridge, garden waste bags…" className="rounded-xl border-slate-200 resize-none" />
+                    </FormField>
+
+                    <FormField label="Access notes">
+                      <Input {...form.register("access_notes")} placeholder="Stairs, lift, heavy items, driveway access, etc." className="rounded-xl border-slate-200" />
+                    </FormField>
+
+                    <FormField label="Photo (optional)">
+                      <label className="flex items-center gap-3 border border-dashed border-slate-300 rounded-xl p-3 cursor-pointer hover:border-navy/40 transition-colors">
+                        <Upload className="h-4 w-4 text-navy" />
+                        <span className="text-sm text-slate-600 truncate">
+                          {uploading ? "Uploading…" : photoUrl ? "Photo uploaded ✓" : "Tap to upload a photo of the items"}
+                        </span>
+                        <input
+                          type="file"
+                          accept="image/*"
+                          className="hidden"
+                          onChange={(e) => e.target.files?.[0] && onUpload(e.target.files[0])}
+                        />
+                      </label>
+                      {photoUrl && (
+                        <img src={photoUrl} alt="Uploaded preview" className="mt-2 h-14 w-14 object-cover rounded-lg border" />
+                      )}
+                    </FormField>
+                  </motion.div>
+                )}
+
+                {step === 3 && (
+                  <motion.div
+                    key="step-3"
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    exit={{ opacity: 0, x: -20 }}
+                    transition={{ duration: 0.3 }}
+                    className="space-y-4"
+                  >
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <FormField label="Preferred date" error={form.formState.errors.preferred_date?.message}>
+                        <Input type="date" {...form.register("preferred_date")} className="rounded-xl border-slate-200" />
+                      </FormField>
+                      <FormField label="Preferred time" error={form.formState.errors.preferred_time?.message}>
+                        <Input type="time" {...form.register("preferred_time")} className="rounded-xl border-slate-200" />
+                      </FormField>
+                    </div>
+
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <FormField label="Alternative date">
+                        <Input type="date" {...form.register("alternative_date")} className="rounded-xl border-slate-200" />
+                      </FormField>
+                      <FormField label="Alternative time">
+                        <Input type="time" {...form.register("alternative_time")} className="rounded-xl border-slate-200" />
+                      </FormField>
+                    </div>
+
+                    <FormField label="Urgency">
+                      <NativeSelect {...form.register("urgency")}>
+                        {URGENCIES.map((u) => <option key={u} value={u}>{u}</option>)}
+                      </NativeSelect>
+                    </FormField>
+
+                    {serverError && <p className="text-xs text-destructive">{serverError}</p>}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </form>
+          </div>
+
+          {/* Bottom buttons */}
+          <div className="mt-8 flex justify-between gap-4 border-t border-slate-100 pt-6">
+            {step > 1 ? (
+              <Button type="button" variant="outline" onClick={prevStep} className="rounded-full px-6 border-slate-300">
+                Back
+              </Button>
+            ) : (
+              <div /> // spacer
+            )}
+
+            {step < 3 ? (
+              <Button type="button" onClick={nextStep} className="bg-yellow text-navy hover:bg-yellow/90 rounded-full px-6 font-semibold gap-1">
+                Next Step <ArrowRight className="h-4 w-4" />
+              </Button>
+            ) : (
+              <Button type="button" onClick={onSubmit} disabled={submitting} className="bg-navy text-white hover:bg-navy/95 rounded-full px-8 font-semibold gap-2">
+                {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Confirm Booking"}
+              </Button>
+            )}
+          </div>
+        </div>
+
+      </div>
     </div>
   );
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
-  return (
-    <section>
-      <h2 className="font-display text-navy text-lg mb-3">{title}</h2>
-      {children}
-    </section>
-  );
-}
-function Grid({ children }: { children: React.ReactNode }) {
-  return <div className="grid sm:grid-cols-2 gap-4">{children}</div>;
-}
 function FormField({ label, children, error, className = "" }: { label: string; children: React.ReactNode; error?: string; className?: string }) {
   return (
     <div className={`space-y-1.5 ${className}`}>
-      <Label>{label}</Label>
+      <Label className="text-slate-700 font-semibold text-xs">{label}</Label>
       {children}
-      {error && <p className="text-xs text-destructive">{error}</p>}
+      {error && <p className="text-[11px] text-destructive font-medium leading-none mt-1">{error}</p>}
     </div>
   );
 }
+
 function NativeSelect(props: React.SelectHTMLAttributes<HTMLSelectElement>) {
   return (
     <select
       {...props}
-      className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+      className="flex h-9 w-full rounded-xl border border-slate-200 bg-white px-3 py-1 text-sm shadow-sm focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring transition-all"
     />
   );
 }
