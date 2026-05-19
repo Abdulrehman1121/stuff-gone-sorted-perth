@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import logoImage from "../assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
 
 function NotFoundComponent() {
   return (
@@ -72,7 +73,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
+      { title: "HaulMate WA | Rubbish Removal Perth" },
       { name: "description", content: "HaulMate WA offers fast, reliable rubbish removal services in Perth, Australia." },
       { name: "author", content: "HaulMate WA" },
       { property: "og:title", content: "HaulMate WA | Rubbish Removal Perth" },
@@ -89,6 +90,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         rel: "stylesheet",
         href: appCss,
+      },
+      {
+        rel: "icon",
+        type: "image/jpeg",
+        href: logoImage,
       },
     ],
   }),

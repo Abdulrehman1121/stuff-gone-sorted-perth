@@ -20,6 +20,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Phone, Loader2, Upload, ArrowLeft, ArrowRight, ShieldCheck, ThumbsUp, Star } from "lucide-react";
 import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
+import heroUte from "@/assets/hero-ute.jpg";
 
 export const Route = createFileRoute("/book")({
   component: BookPage,
@@ -127,8 +128,29 @@ function BookPage() {
   }
 
   return (
-    <div className="min-h-[85vh] bg-slate-50 flex items-center justify-center px-4 py-8 md:py-12">
-      <div className="max-w-5xl w-full bg-white rounded-3xl shadow-xl border border-slate-100 overflow-hidden grid md:grid-cols-12 min-h-[580px]">
+    <div className="bg-slate-50 min-h-screen">
+      {/* Attractive Hero Section */}
+      <section className="relative overflow-hidden bg-navy text-white pt-16 pb-24">
+        <div className="absolute inset-0 -z-10 bg-gradient-to-br from-navy via-navy to-[#1e3a8a] opacity-90" />
+        <div className="absolute inset-0 -z-20 opacity-10" style={{ backgroundImage: `url(${heroUte})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+        <div className="absolute -top-10 -right-10 h-64 w-64 rounded-full bg-yellow/10 blur-3xl" />
+        
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 text-center relative z-10">
+          <span className="inline-flex items-center gap-2 rounded-full bg-white/10 text-yellow px-3 py-1 text-xs font-semibold uppercase tracking-wider mb-4">
+            ✓ Quick 60-Second Booking
+          </span>
+          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-tight">
+            Book Your <span className="text-yellow">Rubbish Removal</span>
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+            Select your service type, upload an optional photo, and choose your preferred date. We'll handle all the lifting and confirm your slot instantly!
+          </p>
+        </div>
+      </section>
+
+      {/* Stepper Container (Overlapping the Hero) */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 -mt-12 pb-16 relative z-10">
+        <div className="bg-white rounded-3xl shadow-2xl border border-slate-100 overflow-hidden grid md:grid-cols-12 min-h-[580px]">
         
         {/* LEFT COLUMN: Sidebar info */}
         <div className="md:col-span-4 bg-navy text-white p-8 flex flex-col justify-between relative overflow-hidden">
@@ -359,6 +381,7 @@ function BookPage() {
           </div>
         </div>
 
+      </div>
       </div>
     </div>
   );
