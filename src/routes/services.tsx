@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Truck, Recycle, CalendarClock, ShieldCheck } from "lucide-react";
 
+import householdRubbishImage from "@/assets/household-rubbish-waste.jpg";
+
 export const Route = createFileRoute("/services")({
   component: Services,
   head: () => ({
@@ -17,7 +19,7 @@ const SERVICES = [
     title: "Household Rubbish Removal",
     description: "From old mattresses to broken appliances, we clear out your household junk quickly and efficiently. No need to hire a skip bin — we load it all for you.",
     icon: Truck,
-    image: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80",
+    image: householdRubbishImage,
     bullets: [
       "Mattresses & bed frames",
       "Whitegoods (fridges, washing machines)",
