@@ -141,7 +141,7 @@ function Index() {
       <header className="sticky top-0 z-40 backdrop-blur bg-white/85 border-b border-border">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-2 group">
-            <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-10 rounded" />
+            <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-10 w-10 rounded-full object-cover" />
           </a>
           <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-navy/80">
             <a href="#services" className="hover:text-navy">Services</a>
@@ -524,7 +524,7 @@ function Index() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 grid md:grid-cols-3 gap-10">
           <div>
             <div className="flex items-center gap-2">
-              <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-10 rounded" />
+              <img src={logoImage} alt="Stuff Gone Sorted Logo" className="h-12 w-12 rounded-full object-cover" />
             </div>
             <p className="mt-3 text-white/70 text-sm max-w-xs">Big or small, we haul it all. Fast, friendly rubbish removal across Perth, WA.</p>
           </div>
