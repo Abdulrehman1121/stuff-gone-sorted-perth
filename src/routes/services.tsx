@@ -17,7 +17,7 @@ const SERVICES = [
     title: "Household Rubbish Removal",
     description: "From old mattresses to broken appliances, we clear out your household junk quickly and efficiently. No need to hire a skip bin — we load it all for you.",
     icon: Truck,
-    image: "https://images.unsplash.com/photo-1530587191325-3db32d826c18?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?auto=format&fit=crop&w=800&q=80",
     bullets: [
       "Mattresses & bed frames",
       "Whitegoods (fridges, washing machines)",
