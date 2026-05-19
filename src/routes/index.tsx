@@ -150,11 +150,10 @@ function Index() {
             <a href="#why" className="hover:text-navy">Why us</a>
             <a href="#how" className="hover:text-navy">How it works</a>
             <a href="#faq" className="hover:text-navy">FAQ</a>
-            <Link to="/book" className="hover:text-navy font-bold text-navy">Book a Service</Link>
           </nav>
-          <a href={TEL} className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-4 py-2 text-sm font-semibold hover:bg-navy/90 transition-colors shadow-sm">
-            <Phone className="h-4 w-4" /> {PHONE}
-          </a>
+          <Link to="/book" className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-4 py-2 text-sm font-semibold hover:bg-navy/90 transition-colors shadow-sm">
+            Book a Service
+          </Link>
         </div>
       </header>
 
