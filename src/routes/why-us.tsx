@@ -17,7 +17,7 @@ const REASONS = [
     title: "Fast & Reliable",
     description: "We show up when we say we will. We understand your time is valuable, so we offer prompt, dependable service across Perth Metro.",
     icon: Clock,
-    image: "https://images.unsplash.com/photo-1508847154043-be12a3b4d63e?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Fair, Upfront Prices",
@@ -29,7 +29,7 @@ const REASONS = [
     title: "Licensed & Insured",
     description: "Peace of mind is guaranteed. We are fully insured and handle all waste responsibly in accordance with local regulations.",
     icon: ShieldCheck,
-    image: "https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Eco-Friendly Disposal",

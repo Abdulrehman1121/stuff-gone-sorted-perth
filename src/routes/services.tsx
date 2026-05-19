@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Truck, Recycle, CalendarClock, ShieldCheck } from "lucide-react";
 
 import householdRubbishImage from "@/assets/household-rubbish-waste.jpg";
+import furnitureRemovalImage from "@/assets/furniture-removal-waste.jpg";
+import gardenGreenWasteImage from "@/assets/garden-green-waste.jpg";
+import garageShedCleanoutsImage from "@/assets/garage-shed-waste.jpg";
 
 export const Route = createFileRoute("/services")({
   component: Services,
@@ -31,7 +34,7 @@ const SERVICES = [
     title: "Furniture Removal",
     description: "Upgrading your furniture? We'll take away the old couches, dining tables, and wardrobes so you have space for the new ones. Safe and prompt disposal.",
     icon: CalendarClock,
-    image: "https://images.unsplash.com/photo-1538688525198-9b88f6f53126?auto=format&fit=crop&w=800&q=80",
+    image: furnitureRemovalImage,
     bullets: [
       "Sofas & lounges",
       "Dining tables & chairs",
@@ -43,7 +46,7 @@ const SERVICES = [
     title: "Garden & Green Waste",
     description: "After a big weekend in the garden, let us haul away the branches, clippings, and soil. We ensure all green waste is disposed of in an eco-friendly manner.",
     icon: Recycle,
-    image: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80",
+    image: gardenGreenWasteImage,
     bullets: [
       "Branches & hedge trimmings",
       "Lawn clippings & weeds",
@@ -55,7 +58,7 @@ const SERVICES = [
     title: "Garage & Shed Cleanouts",
     description: "Reclaim your space. We help you clear decades of accumulated clutter from your shed, garage, or storage unit, handling all sorting and lifting.",
     icon: CheckCircle2,
-    image: "https://images.unsplash.com/photo-1595206133361-b1fe343e5e23?auto=format&fit=crop&w=800&q=80",
+    image: garageShedCleanoutsImage,
     bullets: [
       "Old tools & equipment",
       "Storage boxes & bins",
