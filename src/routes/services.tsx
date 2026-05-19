@@ -41,7 +41,7 @@ const SERVICES = [
     title: "Garden & Green Waste",
     description: "After a big weekend in the garden, let us haul away the branches, clippings, and soil. We ensure all green waste is disposed of in an eco-friendly manner.",
     icon: Recycle,
-    image: "https://images.unsplash.com/photo-1598902108854-10e335adac99?auto=format&fit=crop&w=800&q=80",
+    image: "https://images.unsplash.com/photo-1599599810769-bcde5a160d32?auto=format&fit=crop&w=800&q=80",
     bullets: [
       "Branches & hedge trimmings",
       "Lawn clippings & weeds",
