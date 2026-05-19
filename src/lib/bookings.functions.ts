@@ -108,7 +108,7 @@ export const updateBookingStatus = createServerFn({ method: "POST" })
 
     const { data: updated, error } = await supabaseAdmin
       .from("bookings")
-      .update(update)
+      .update(update as never)
       .eq("id", data.id)
       .select("*")
       .single();

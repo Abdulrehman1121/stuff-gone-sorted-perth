@@ -46,7 +46,7 @@ export async function sendEmail(opts: {
       },
       { apiKey }
     );
-    return { success: true as const, ...result };
+    return { ...result, success: true as const };
   } catch (err) {
     console.error("[email] send failed:", err);
     return { success: false as const, error: err instanceof Error ? err.message : "unknown" };
