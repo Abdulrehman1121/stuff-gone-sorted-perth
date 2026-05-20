@@ -216,22 +216,22 @@ function Index() {
       </section>
 
       {/* QUICK PREVIEW SECTION */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-8 sm:py-20 bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 text-center">
            <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
            >
-             <h2 className="font-display text-3xl sm:text-4xl text-navy mb-8">Everything you need, sorted.</h2>
-             <div className="flex flex-wrap justify-center gap-4 mb-8">
-                <Link to="/services" className="bg-white px-6 py-4 rounded-2xl shadow-sm border border-gray-100 font-semibold text-navy hover:border-yellow hover:shadow-md transition-all">
+             <h2 className="font-display text-2xl sm:text-4xl text-navy mb-5 sm:mb-8">Everything you need, sorted.</h2>
+             <div className="flex flex-wrap justify-center gap-3 sm:gap-4">
+                <Link to="/services" className="bg-white px-4 py-2.5 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl shadow-sm border border-gray-100 font-semibold text-sm sm:text-base text-navy hover:border-yellow hover:shadow-md transition-all">
                   Our Services
                 </Link>
-                <Link to="/how-it-works" className="bg-white px-6 py-4 rounded-2xl shadow-sm border border-gray-100 font-semibold text-navy hover:border-yellow hover:shadow-md transition-all">
+                <Link to="/how-it-works" className="bg-white px-4 py-2.5 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl shadow-sm border border-gray-100 font-semibold text-sm sm:text-base text-navy hover:border-yellow hover:shadow-md transition-all">
                   How it Works
                 </Link>
-                <Link to="/why-us" className="bg-white px-6 py-4 rounded-2xl shadow-sm border border-gray-100 font-semibold text-navy hover:border-yellow hover:shadow-md transition-all">
+                <Link to="/why-us" className="bg-white px-4 py-2.5 sm:px-6 sm:py-4 rounded-xl sm:rounded-2xl shadow-sm border border-gray-100 font-semibold text-sm sm:text-base text-navy hover:border-yellow hover:shadow-md transition-all">
                   Why Choose Us
                 </Link>
              </div>
