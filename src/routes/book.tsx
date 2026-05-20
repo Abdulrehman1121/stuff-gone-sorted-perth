@@ -29,7 +29,16 @@ export const Route = createFileRoute("/book")({
   }),
 });
 
+const getTodayString = () => {
+  const d = new Date();
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
 function BookPage() {
+  const minDate = getTodayString();
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -329,7 +338,7 @@ function BookPage() {
                   >
                     <div className="grid sm:grid-cols-2 gap-4">
                       <FormField label="Preferred date" error={form.formState.errors.preferred_date?.message}>
-                        <Input type="date" {...form.register("preferred_date")} className="rounded-xl border-slate-200" />
+                        <Input type="date" min={minDate} {...form.register("preferred_date")} className="rounded-xl border-slate-200" />
                       </FormField>
                       <FormField label="Preferred time" error={form.formState.errors.preferred_time?.message}>
                         <Input type="time" {...form.register("preferred_time")} className="rounded-xl border-slate-200" />
@@ -338,7 +347,7 @@ function BookPage() {
 
                     <div className="grid sm:grid-cols-2 gap-4">
                       <FormField label="Alternative date">
-                        <Input type="date" {...form.register("alternative_date")} className="rounded-xl border-slate-200" />
+                        <Input type="date" min={minDate} {...form.register("alternative_date")} className="rounded-xl border-slate-200" />
                       </FormField>
                       <FormField label="Alternative time">
                         <Input type="time" {...form.register("alternative_time")} className="rounded-xl border-slate-200" />
