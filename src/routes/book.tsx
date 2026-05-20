@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
@@ -45,6 +45,12 @@ function BookPage() {
   const [uploading, setUploading] = useState(false);
   const [photoUrl, setPhotoUrl] = useState<string>("");
   const [serverError, setServerError] = useState<string | null>(null);
+
+  const formRef = useRef<HTMLDivElement>(null);
+
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const form = useForm<BookingInput>({
     resolver: zodResolver(bookingInputSchema),
@@ -185,7 +191,14 @@ function BookPage() {
                 { number: 2, label: "Service Details" },
                 { number: 3, label: "Preferred Schedule" },
               ].map((s) => (
-                <div key={s.number} className="flex items-center gap-3">
+                <div
+                  key={s.number}
+                  className="flex items-center gap-3 cursor-pointer group"
+                  onClick={scrollToForm}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(e) => e.key === "Enter" && scrollToForm()}
+                >
                   <div className={`h-8 w-8 rounded-full flex items-center justify-center font-bold text-sm transition-colors duration-300 ${
                     step === s.number
                       ? "bg-yellow text-navy"
@@ -195,7 +208,7 @@ function BookPage() {
                   }`}>
                     {step > s.number ? "✓" : s.number}
                   </div>
-                  <span className={`text-sm font-semibold transition-colors duration-300 ${
+                  <span className={`text-sm font-semibold transition-colors duration-300 group-hover:text-white ${
                     step === s.number ? "text-white" : "text-white/50"
                   }`}>
                     {s.label}
@@ -218,7 +231,7 @@ function BookPage() {
         </div>
 
         {/* RIGHT COLUMN: The Step Form */}
-        <div className="md:col-span-8 p-6 sm:p-10 flex flex-col justify-between min-h-[500px]">
+        <div ref={formRef} className="md:col-span-8 p-6 sm:p-10 flex flex-col justify-between min-h-[500px]">
           <div>
             {/* Header progress */}
             <div className="flex justify-between items-center mb-6">
