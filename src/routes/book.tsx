@@ -137,7 +137,7 @@ function BookPage() {
           <span className="inline-flex items-center gap-2 rounded-full bg-white/10 text-yellow px-3 py-1 text-xs font-semibold uppercase tracking-wider mb-4">
             ✓ Quick 60-Second Booking
           </span>
-          <h1 className="font-display text-3xl sm:text-4xl lg:text-5xl leading-tight">
+          <h1 className="font-display text-2xl sm:text-4xl lg:text-5xl leading-tight">
             Book Your <span className="text-yellow">Rubbish Removal</span>
           </h1>
           <p className="mt-4 text-base sm:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
@@ -161,7 +161,7 @@ function BookPage() {
               <span className="font-display text-lg tracking-wide">HaulMate WA</span>
             </div>
             
-            <h2 className="font-display text-2xl sm:text-3xl leading-tight mb-4 text-yellow">
+            <h2 className="font-display text-xl sm:text-3xl leading-tight mb-4 text-yellow">
               Book Your Rubbish Removal
             </h2>
             <p className="text-sm text-slate-300 mb-8 leading-relaxed">

@@ -114,12 +114,12 @@ function Index() {
             <span className="inline-flex items-center gap-2 rounded-full bg-navy/5 text-navy px-3 py-1 text-xs font-semibold uppercase tracking-wider">
               <span className="h-2 w-2 rounded-full bg-yellow animate-pulse" /> Perth's local hauling crew
             </span>
-            <h1 className="mt-5 font-display text-5xl sm:text-6xl lg:text-7xl leading-[0.95] text-navy">
+            <h1 className="mt-5 font-display text-4xl sm:text-6xl lg:text-7xl leading-[0.95] text-navy">
               STUFF GONE.<br />
               <span className="text-yellow">SORTED.</span><br />
               <span className="brush text-navy">We'll take it!</span>
             </h1>
-            <p className="mt-6 text-lg text-navy/70 max-w-xl">
+            <p className="mt-6 text-base sm:text-lg text-navy/70 max-w-xl">
               Fast, reliable <strong>rubbish removal across Perth</strong> with a one‑tonne tray ute. Furniture, garden waste, garage cleanouts and general junk — big or small, we haul it all.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
@@ -223,7 +223,7 @@ function Index() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
            >
-             <h2 className="font-display text-4xl text-navy mb-8">Everything you need, sorted.</h2>
+             <h2 className="font-display text-3xl sm:text-4xl text-navy mb-8">Everything you need, sorted.</h2>
              <div className="flex flex-wrap justify-center gap-4 mb-8">
                 <Link to="/services" className="bg-white px-6 py-4 rounded-2xl shadow-sm border border-gray-100 font-semibold text-navy hover:border-yellow hover:shadow-md transition-all">
                   Our Services
@@ -249,7 +249,7 @@ function Index() {
             transition={{ duration: 0.6 }}
           >
             <p className="text-navy bg-white inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Service area</p>
-            <h2 className="mt-4 font-display text-4xl sm:text-5xl text-navy">Servicing Perth & surrounding areas</h2>
+            <h2 className="mt-4 font-display text-3xl sm:text-5xl text-navy">Servicing Perth & surrounding areas</h2>
             <p className="mt-4 text-navy/75 max-w-lg">Wherever you are in the Perth metro and nearby suburbs, we'll come to you. Friendly local crew, fair prices, and the same job-done attitude every time.</p>
             <div className="mt-6 flex flex-wrap gap-2">
               {["Perth CBD", "Northern Suburbs", "Southern Suburbs", "Eastern Suburbs", "Western Suburbs", "Hills"].map((s) => (
@@ -295,11 +295,11 @@ function Index() {
             <div className="grid lg:grid-cols-2 gap-12 relative">
               <div>
                 <p className="text-yellow text-xs font-bold uppercase tracking-wider">Free quote</p>
-                <h2 className="mt-3 font-display text-4xl sm:text-5xl">Need rubbish gone today?</h2>
+                <h2 className="mt-3 font-display text-3xl sm:text-5xl">Need rubbish gone today?</h2>
                 <p className="mt-4 text-white/80 max-w-md">Call or message for a free quote. Quick replies, fair pricing, and no fuss.</p>
                 <a href={TEL} className="mt-8 block group">
                   <div className="text-xs uppercase tracking-wider text-yellow font-semibold">Call us now</div>
-                  <div className="font-display text-5xl sm:text-6xl group-hover:text-yellow transition-colors">{PHONE}</div>
+                  <div className="font-display text-4xl sm:text-6xl group-hover:text-yellow transition-colors">{PHONE}</div>
                 </a>
                 <div className="mt-6 flex flex-wrap gap-3">
                   <a href={TEL} className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold hover:-translate-y-0.5 transition-transform">

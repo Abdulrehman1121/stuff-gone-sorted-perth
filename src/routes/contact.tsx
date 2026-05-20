@@ -25,10 +25,10 @@ function ContactPage() {
             transition={{ duration: 0.8 }}
             className="mx-auto max-w-4xl px-4 sm:px-6 text-center"
           >
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl leading-tight">
               Get in <span className="text-yellow">Touch</span>
             </h1>
-            <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto">
+            <p className="mt-6 text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
               Ready to clear the clutter? Call, message, or WhatsApp us today for a free, upfront quote. We're your local Perth rubbish removal experts.
             </p>
           </motion.div>

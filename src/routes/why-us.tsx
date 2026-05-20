@@ -52,10 +52,10 @@ function WhyUs() {
             transition={{ duration: 0.8 }}
             className="mx-auto max-w-3xl px-4 sm:px-6"
           >
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl leading-tight">
               Why Choose <span className="text-yellow">HaulMate WA?</span>
             </h1>
-            <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto">
+            <p className="mt-6 text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
               We are a local Perth business dedicated to providing hassle-free, professional, and friendly rubbish removal services. We treat your property with respect.
             </p>
             <div className="mt-8">
@@ -82,13 +82,13 @@ function WhyUs() {
                     transition={{ duration: 0.7 }}
                     className={`lg:col-span-6 ${!isEven ? "lg:order-2" : ""}`}
                   >
-                    <h2 className="font-display text-3xl sm:text-4xl text-navy mb-6 flex items-center gap-3.5">
+                    <h2 className="font-display text-2xl sm:text-4xl text-navy mb-6 flex items-center gap-3.5">
                       <div className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-yellow/25 text-navy">
                         <r.icon className="h-6 w-6" />
                       </div>
                       <span>{r.title}</span>
                     </h2>
-                    <p className="text-navy/70 text-lg leading-relaxed mb-6">
+                    <p className="text-navy/70 text-base sm:text-lg leading-relaxed mb-6">
                       {r.description}
                     </p>
                   </motion.div>

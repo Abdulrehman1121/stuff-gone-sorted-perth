@@ -42,10 +42,10 @@ function Faq() {
             transition={{ duration: 0.8 }}
             className="mx-auto max-w-3xl px-4 sm:px-6"
           >
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl leading-tight">
               Frequently Asked <span className="text-yellow">Questions</span>
             </h1>
-            <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto">
+            <p className="mt-6 text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
               Got a question? We've got answers. If you can't find what you're looking for, feel free to give us a call.
             </p>
           </motion.div>
@@ -73,7 +73,7 @@ function Faq() {
             </motion.div>
 
             <div className="mt-16 text-center">
-              <h3 className="text-2xl font-display text-navy mb-4">Ready to clear your clutter?</h3>
+              <h3 className="text-xl sm:text-2xl font-display text-navy mb-4">Ready to clear your clutter?</h3>
               <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-8 py-4 font-bold shadow-lg hover:-translate-y-0.5 transition-transform text-lg">
                 Book a Service <ArrowRight className="h-5 w-5" />
               </Link>

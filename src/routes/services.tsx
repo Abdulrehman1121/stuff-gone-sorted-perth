@@ -84,10 +84,10 @@ function Services() {
             <span className="inline-flex items-center gap-2 rounded-full bg-white/10 text-yellow px-3 py-1 text-xs font-semibold uppercase tracking-wider mb-4">
               ✓ What we haul
             </span>
-            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl leading-tight">
+            <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl leading-tight">
               Professional <span className="text-yellow">Rubbish Removal</span> Services in Perth
             </h1>
-            <p className="mt-6 text-lg text-white/80 max-w-2xl mx-auto">
+            <p className="mt-6 text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
               We handle all the heavy lifting so you don't have to. Fast, affordable, and eco-friendly rubbish removal for homes and businesses across Perth.
             </p>
             <div className="mt-8">
@@ -114,13 +114,13 @@ function Services() {
                     transition={{ duration: 0.7 }}
                     className={`lg:col-span-6 ${!isEven ? "lg:order-2" : ""}`}
                   >
-                    <h2 className="font-display text-3xl sm:text-4xl text-navy mb-4 flex items-center gap-3.5">
+                    <h2 className="font-display text-2xl sm:text-4xl text-navy mb-4 flex items-center gap-3.5">
                       <div className="inline-flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl bg-yellow/25 text-navy">
                         <s.icon className="h-6 w-6" />
                       </div>
                       <span>{s.title}</span>
                     </h2>
-                    <p className="text-navy/70 text-lg leading-relaxed mb-6">
+                    <p className="text-navy/70 text-base sm:text-lg leading-relaxed mb-6">
                       {s.description}
                     </p>
                     <ul className="grid sm:grid-cols-2 gap-3">
