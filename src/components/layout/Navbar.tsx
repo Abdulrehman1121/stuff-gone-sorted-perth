@@ -44,56 +44,58 @@ export function Navbar() {
   ];
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur bg-white/85 border-b border-border shadow-sm">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
-        {/* Logo and Brand */}
-        <Link to="/" className="flex items-center gap-2 group">
-          <img
-            src={logoImage}
-            alt="HaulMate WA Logo"
-            className="h-10 w-10 rounded-full object-cover ring-2 ring-navy/5"
-          />
-          <span className="font-display text-lg text-navy font-bold">
-            HaulMate WA
-          </span>
-        </Link>
+    <>
+      <header className="sticky top-0 z-50 backdrop-blur bg-white/85 border-b border-border shadow-sm">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
+          {/* Logo and Brand */}
+          <Link to="/" className="flex items-center gap-2 group">
+            <img
+              src={logoImage}
+              alt="HaulMate WA Logo"
+              className="h-10 w-10 rounded-full object-cover ring-2 ring-navy/5"
+            />
+            <span className="font-display text-lg text-navy font-bold">
+              HaulMate WA
+            </span>
+          </Link>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
-          {navLinks.map((link) => (
-            <Link key={link.to} to={link.to} className={getLinkClass(link.to)}>
-              {link.label}
+          {/* Desktop Navigation Links */}
+          <nav className="hidden md:flex items-center gap-7 text-sm font-medium">
+            {navLinks.map((link) => (
+              <Link key={link.to} to={link.to} className={getLinkClass(link.to)}>
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          {/* Header Right Actions */}
+          <div className="flex items-center gap-4">
+            <Link
+              to="/contact"
+              className="hidden lg:inline-flex text-sm font-medium text-navy/80 hover:text-navy transition-colors"
+            >
+              Contact
             </Link>
-          ))}
-        </nav>
+            
+            <Link
+              to="/book"
+              className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-5 py-2 text-sm font-semibold hover:bg-navy/90 transition-all shadow-sm active:scale-95"
+            >
+              <Calendar className="h-4 w-4 text-yellow" />
+              Book a Service
+            </Link>
 
-        {/* Header Right Actions */}
-        <div className="flex items-center gap-4">
-          <Link
-            to="/contact"
-            className="hidden lg:inline-flex text-sm font-medium text-navy/80 hover:text-navy transition-colors"
-          >
-            Contact
-          </Link>
-          
-          <Link
-            to="/book"
-            className="hidden sm:inline-flex items-center gap-2 rounded-full bg-navy text-white px-5 py-2 text-sm font-semibold hover:bg-navy/90 transition-all shadow-sm active:scale-95"
-          >
-            <Calendar className="h-4 w-4 text-yellow" />
-            Book a Service
-          </Link>
-
-          {/* Hamburger Menu Toggle Button */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-xl text-navy bg-navy/5 hover:bg-navy/10 active:scale-95 transition-all"
-            aria-label="Toggle navigation menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+            {/* Hamburger Menu Toggle Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden p-2 rounded-xl text-navy bg-navy/5 hover:bg-navy/10 active:scale-95 transition-all"
+              aria-label="Toggle navigation menu"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
         </div>
-      </div>
+      </header>
 
       {/* Mobile Drawer Navigation (using AnimatePresence) */}
       <AnimatePresence>
@@ -105,7 +107,7 @@ export function Navbar() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 top-16 z-40 bg-navy/40 backdrop-blur-sm md:hidden"
+              className="fixed inset-0 top-16 z-[60] bg-navy/40 backdrop-blur-sm md:hidden"
             />
 
             {/* Menu Slide-in panel */}
@@ -114,7 +116,7 @@ export function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-16 right-0 bottom-0 z-40 w-full max-w-[290px] bg-white border-l border-border shadow-2xl p-6 flex flex-col justify-between md:hidden"
+              className="fixed top-16 right-0 bottom-0 z-[60] w-full max-w-[290px] bg-white border-l border-border shadow-2xl p-6 flex flex-col justify-between md:hidden"
             >
               <div className="space-y-8">
                 {/* Navigation Links List */}
@@ -173,6 +175,6 @@ export function Navbar() {
           </>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }
