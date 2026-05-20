@@ -1,11 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { supabase } from "@/integrations/supabase/client";
-import { submitBooking } from "@/lib/bookings.functions";
+import { apiRequest, PHP_API_URL } from "@/lib/api-client";
 import {
   bookingInputSchema,
   SERVICE_TYPES,
@@ -32,7 +30,6 @@ export const Route = createFileRoute("/book")({
 });
 
 function BookPage() {
-  const submit = useServerFn(submitBooking);
   const [step, setStep] = useState(1);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -58,16 +55,24 @@ function BookPage() {
     }
     setUploading(true);
     setServerError(null);
-    const ext = file.name.split(".").pop() || "jpg";
-    const path = `${crypto.randomUUID()}.${ext}`;
-    const { error } = await supabase.storage.from("booking-photos").upload(path, file, {
-      contentType: file.type, upsert: false,
-    });
-    setUploading(false);
-    if (error) { setServerError(error.message); return; }
-    const { data } = supabase.storage.from("booking-photos").getPublicUrl(path);
-    setPhotoUrl(data.publicUrl);
-    form.setValue("photo_url", data.publicUrl);
+    try {
+      const formData = new FormData();
+      formData.append("photo", file);
+      const res = await fetch(`${PHP_API_URL}?action=upload`, {
+        method: "POST",
+        body: formData,
+      });
+      const data = await res.json();
+      if (!res.ok || data.success === false) {
+        throw new Error(data.error || "Failed to upload photo");
+      }
+      setPhotoUrl(data.publicUrl);
+      form.setValue("photo_url", data.publicUrl);
+    } catch (err) {
+      setServerError(err instanceof Error ? err.message : "Upload failed");
+    } finally {
+      setUploading(false);
+    }
   };
 
   const nextStep = async () => {
@@ -92,7 +97,10 @@ function BookPage() {
     setServerError(null);
     setSubmitting(true);
     try {
-      await submit({ data: { ...values, photo_url: photoUrl || undefined } });
+      await apiRequest("submit", {
+        method: "POST",
+        body: JSON.stringify({ ...values, photo_url: photoUrl || undefined }),
+      });
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (e) {
@@ -101,6 +109,7 @@ function BookPage() {
       setSubmitting(false);
     }
   });
+
 
   if (submitted) {
     return (

@@ -1,6 +1,5 @@
-import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
-import { supabase } from "@/integrations/supabase/client";
 
 export const Route = createFileRoute("/_authenticated")({
   component: AuthLayout,
@@ -11,19 +10,9 @@ function AuthLayout() {
   const [authed, setAuthed] = useState(false);
 
   useEffect(() => {
-    let mounted = true;
-    supabase.auth.getSession().then(({ data }) => {
-      if (!mounted) return;
-      setAuthed(!!data.session);
-      setReady(true);
-    });
-    const { data: sub } = supabase.auth.onAuthStateChange((_e, session) => {
-      setAuthed(!!session);
-    });
-    return () => {
-      mounted = false;
-      sub.subscription.unsubscribe();
-    };
+    const token = localStorage.getItem("haulmate_admin_token");
+    setAuthed(!!token);
+    setReady(true);
   }, []);
 
   if (!ready) {
@@ -41,3 +30,4 @@ function AuthLayout() {
   }
   return <Outlet />;
 }
+

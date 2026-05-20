@@ -1,10 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useServerFn } from "@tanstack/react-start";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useMemo, useState } from "react";
 import { format, parseISO } from "date-fns";
-import { listBookings, updateBookingStatus } from "@/lib/bookings.functions";
-import { supabase } from "@/integrations/supabase/client";
+import { apiRequest } from "@/lib/api-client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -64,15 +62,13 @@ const STATUS_COLOR: Record<Booking["status"], string> = {
 };
 
 function AdminDashboard() {
-  const list = useServerFn(listBookings);
-  const update = useServerFn(updateBookingStatus);
   const qc = useQueryClient();
   const [filter, setFilter] = useState<Booking["status"] | "all">("all");
   const [selected, setSelected] = useState<Booking | null>(null);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ["admin-bookings"],
-    queryFn: () => list({}),
+    queryFn: () => apiRequest<{ bookings: Booking[] }>("list"),
   });
 
   const mutation = useMutation({
@@ -82,12 +78,30 @@ function AdminDashboard() {
       approved_date?: string | null;
       approved_time?: string | null;
       admin_notes?: string | null;
-    }) => update({ data: vars }),
+    }) => apiRequest("update_status", {
+      method: "POST",
+      body: JSON.stringify(vars)
+    }),
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["admin-bookings"] });
       setSelected(null);
     },
+    onError: (err) => {
+      // If token expired or invalid (401), send back to login
+      if (err.message.includes("401") || err.message.toLowerCase().includes("unauthorized")) {
+        localStorage.removeItem("haulmate_admin_token");
+        window.location.href = "/admin/login";
+      }
+    }
   });
+
+  // Handle unauthorized errors from fetching list
+  useMemo(() => {
+    if (error && (error.message.includes("401") || error.message.toLowerCase().includes("unauthorized"))) {
+      localStorage.removeItem("haulmate_admin_token");
+      window.location.href = "/admin/login";
+    }
+  }, [error]);
 
   const bookings: Booking[] = (data?.bookings as Booking[]) || [];
   const filtered = useMemo(
@@ -113,10 +127,11 @@ function AdminDashboard() {
     return c;
   }, [bookings]);
 
-  const signOut = async () => {
-    await supabase.auth.signOut();
+  const signOut = () => {
+    localStorage.removeItem("haulmate_admin_token");
     window.location.href = "/admin/login";
   };
+
 
   return (
     <div className="min-h-screen bg-slate-50">
