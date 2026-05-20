@@ -340,8 +340,8 @@ function BookPage() {
                       <FormField label="Preferred date" error={form.formState.errors.preferred_date?.message}>
                         <Input type="date" min={minDate} {...form.register("preferred_date")} className="rounded-xl border-slate-200" />
                       </FormField>
-                      <FormField label="Preferred time" error={form.formState.errors.preferred_time?.message}>
-                        <Input type="time" {...form.register("preferred_time")} className="rounded-xl border-slate-200" />
+                      <FormField label="Preferred time (6 AM – 6 PM)" error={form.formState.errors.preferred_time?.message}>
+                        <Input type="time" min="06:00" max="18:00" {...form.register("preferred_time")} className="rounded-xl border-slate-200" />
                       </FormField>
                     </div>
 
@@ -349,8 +349,8 @@ function BookPage() {
                       <FormField label="Alternative date">
                         <Input type="date" min={minDate} {...form.register("alternative_date")} className="rounded-xl border-slate-200" />
                       </FormField>
-                      <FormField label="Alternative time">
-                        <Input type="time" {...form.register("alternative_time")} className="rounded-xl border-slate-200" />
+                      <FormField label="Alternative time (6 AM – 6 PM)" error={form.formState.errors.alternative_time?.message}>
+                        <Input type="time" min="06:00" max="18:00" {...form.register("alternative_time")} className="rounded-xl border-slate-200" />
                       </FormField>
                     </div>
 

@@ -25,13 +25,13 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "HaulMate WA | Rubbish Removal Perth — One Tonne Ute" },
+      { title: "HaulMate WA | Rubbish Removal Perth — One Tonne UTE" },
       {
         name: "description",
         content:
-          "Fast, reliable rubbish removal Perth. Furniture removal, garden waste, garage cleanouts & junk removal with a one tonne tray ute. Call 0415 125 702 for a free quote.",
+          "Fast, reliable rubbish removal Perth. Furniture removal, garden waste, garage cleanouts & junk removal with a one tonne tray UTE. Call 0415 125 702 for a free quote.",
       },
-      { name: "keywords", content: "rubbish removal Perth, furniture removal Perth, garden waste removal Perth, garage cleanouts Perth, junk removal Perth, one tonne ute rubbish removal, fast local rubbish removal" },
+      { name: "keywords", content: "rubbish removal Perth, furniture removal Perth, garden waste removal Perth, garage cleanouts Perth, junk removal Perth, one tonne UTE rubbish removal, fast local rubbish removal" },
       { property: "og:title", content: "HaulMate WA | Rubbish Removal Perth" },
       { property: "og:description", content: "Fast, reliable rubbish removal across Perth. Call 0415 125 702 for a free quote." },
       { property: "og:type", content: "website" },
@@ -55,7 +55,7 @@ function Index() {
   } = useForm<FormVals>({ resolver: zodResolver(schema) });
 
   const carouselImages = [
-    { src: heroUte, alt: "One tonne tray ute loaded with furniture and household rubbish in Perth" },
+    { src: heroUte, alt: "One tonne tray UTE loaded with furniture and household rubbish in Perth" },
     { src: servicesHero, alt: "HaulMate WA rubbish removal service in action" },
     { src: howItWorksHero, alt: "Reliable rubbish disposal crew" },
     { src: faqHero, alt: "Shed and garage cleanup service" }
@@ -89,7 +89,7 @@ function Index() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "HaulMate WA",
-    description: "Fast, reliable rubbish removal across Perth with a one-tonne tray ute.",
+    description: "Fast, reliable rubbish removal across Perth with a one-tonne tray UTE.",
     telephone: "+61415125702",
     areaServed: "Perth, Western Australia",
     priceRange: "$$",
@@ -120,7 +120,7 @@ function Index() {
               <span className="brush text-navy">We'll take it!</span>
             </h1>
             <p className="mt-6 text-base sm:text-lg text-navy/70 max-w-xl">
-              Fast, reliable <strong>rubbish removal across Perth</strong> with a one‑tonne tray ute. Furniture, garden waste, garage cleanouts and general junk — big or small, we haul it all.
+              Fast, reliable <strong>rubbish removal across Perth</strong> with a one‑tonne tray UTE. Furniture, garden waste, garage cleanouts and general junk — big or small, we haul it all.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold shadow-lg shadow-yellow/20 hover:-translate-y-0.5 hover:shadow-xl transition-all">
@@ -348,7 +348,7 @@ function Index() {
                       </label>
                     </Field>
                     <button type="submit" disabled={isSubmitting} className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-navy text-white py-3.5 font-semibold hover:bg-navy/90 disabled:opacity-70 transition-all">
-                      {isSubmitting ? "Sending..." : (<>Send my free quote <Send className="h-4 w-4" /></>)}
+                      {isSubmitting ? "Sending..." : (<>Request my free quote <Send className="h-4 w-4" /></>)}
                     </button>
                   </form>
                 )}

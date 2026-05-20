@@ -12,13 +12,25 @@ export const SERVICE_TYPES = [
 
 export const LOAD_SIZES = [
   "Small load",
-  "Half ute load",
-  "Full one-tonne ute load",
+  "Half UTE load",
+  "Full one-tonne UTE load",
   "Not sure",
 ] as const;
 
 export const URGENCIES = ["Today", "Tomorrow", "This week", "Flexible"] as const;
 export const CONTACT_METHODS = ["Call", "WhatsApp", "Email"] as const;
+
+const isTimeWithinBounds = (val?: string) => {
+  if (!val) return true;
+  const parts = val.split(":");
+  if (parts.length < 2) return false;
+  const hours = parseInt(parts[0], 10);
+  const minutes = parseInt(parts[1], 10);
+  const totalMinutes = hours * 60 + minutes;
+  // 6am is 6 * 60 = 360
+  // 6pm is 18 * 60 = 1080
+  return totalMinutes >= 360 && totalMinutes <= 1080;
+};
 
 export const bookingInputSchema = z.object({
   full_name: z.string().trim().min(1, "Name is required").max(120),
@@ -33,9 +45,15 @@ export const bookingInputSchema = z.object({
   access_notes: z.string().trim().max(1000).optional().or(z.literal("")),
   photo_url: z.string().url().max(500).optional().or(z.literal("")),
   preferred_date: z.string().min(1, "Preferred date is required"),
-  preferred_time: z.string().min(1, "Preferred time is required"),
+  preferred_time: z.string().min(1, "Preferred time is required").refine(
+    (val) => isTimeWithinBounds(val),
+    { message: "Booking time must be between 6:00 AM and 6:00 PM" }
+  ),
   alternative_date: z.string().optional().or(z.literal("")),
-  alternative_time: z.string().optional().or(z.literal("")),
+  alternative_time: z.string().optional().or(z.literal("")).refine(
+    (val) => !val || isTimeWithinBounds(val),
+    { message: "Booking time must be between 6:00 AM and 6:00 PM" }
+  ),
   urgency: z.enum(URGENCIES).optional(),
 });
 

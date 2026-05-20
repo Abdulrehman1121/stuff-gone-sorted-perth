@@ -164,7 +164,7 @@ function Services() {
               Need junk removed that isn't listed here?
             </h3>
             <p className="text-navy/70 mb-8 max-w-xl mx-auto">
-              Don't worry — we take almost anything that fits in our ute. Give us a call or send a photo on WhatsApp for a custom quote.
+              Don't worry — we take almost anything that fits in our UTE. Give us a call or send a photo on WhatsApp for a custom quote.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link to="/book" className="bg-yellow text-navy px-8 py-3.5 rounded-full font-bold shadow-lg hover:-translate-y-0.5 transition-all">

@@ -26,7 +26,7 @@ const FAQS = [
   },
   {
     q: "How big is your truck?",
-    a: "We operate a one-tonne tray ute. It's perfect for navigating narrow Perth driveways and tight streets while still carrying a large volume of household rubbish.",
+    a: "We operate a one-tonne tray UTE. It's perfect for navigating narrow Perth driveways and tight streets while still carrying a large volume of household rubbish.",
   },
 ];
 
