@@ -105,23 +105,13 @@ export function Footer() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Message us on WhatsApp"
-        className="fixed bottom-24 right-4 md:bottom-6 md:right-6 z-50 inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white pl-3 pr-4 py-3 shadow-2xl hover:-translate-y-0.5 transition-transform animate-pulse-slow"
+        className="fixed bottom-6 right-4 md:bottom-6 md:right-6 z-50 inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white pl-3 pr-4 py-3 shadow-2xl hover:-translate-y-0.5 transition-transform animate-pulse-slow"
       >
         <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-white/15">
           <WhatsAppIcon className="h-5 w-5" />
         </span>
         <span className="hidden sm:inline font-semibold text-sm">WhatsApp Quote</span>
       </a>
-
-      {/* Sticky mobile WhatsApp/Book bar */}
-      <div className="md:hidden fixed bottom-4 inset-x-4 z-50 grid grid-cols-2 gap-2">
-        <Link to="/book" className="inline-flex items-center justify-center gap-2 rounded-full bg-yellow text-navy py-3.5 font-display text-base shadow-2xl shadow-navy/30 active:scale-95 transition-transform">
-          Book Now
-        </Link>
-        <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] text-white py-3.5 font-display text-base shadow-2xl shadow-green-900/30 active:scale-95 transition-transform">
-          <WhatsAppIcon className="h-5 w-5" /> WhatsApp
-        </a>
-      </div>
     </>
   );
 }
