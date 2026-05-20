@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { apiRequest, PHP_API_URL } from "@/lib/api-client";
+import { apiRequest, uploadPhoto } from "@/lib/api-client";
 import {
   bookingInputSchema,
   SERVICE_TYPES,
@@ -56,24 +56,16 @@ function BookPage() {
     setUploading(true);
     setServerError(null);
     try {
-      const formData = new FormData();
-      formData.append("photo", file);
-      const res = await fetch(`${PHP_API_URL}?action=upload`, {
-        method: "POST",
-        body: formData,
-      });
-      const data = await res.json();
-      if (!res.ok || data.success === false) {
-        throw new Error(data.error || "Failed to upload photo");
-      }
-      setPhotoUrl(data.publicUrl);
-      form.setValue("photo_url", data.publicUrl);
+      const publicUrl = await uploadPhoto(file);
+      setPhotoUrl(publicUrl);
+      form.setValue("photo_url", publicUrl);
     } catch (err) {
       setServerError(err instanceof Error ? err.message : "Upload failed");
     } finally {
       setUploading(false);
     }
   };
+
 
   const nextStep = async () => {
     let fieldsToValidate: Array<keyof BookingInput> = [];
