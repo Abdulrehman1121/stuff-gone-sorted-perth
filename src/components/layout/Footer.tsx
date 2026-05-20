@@ -11,11 +11,11 @@ const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent
 export function Footer() {
   return (
     <>
-      <footer className="bg-navy text-white pt-16 pb-28 md:pb-12 border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+      <footer className="bg-navy text-white pt-12 pb-24 md:pt-16 md:pb-12 border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 grid grid-cols-2 md:grid-cols-4 gap-y-10 gap-x-6">
           
           {/* Brand Col */}
-          <div>
+          <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-3">
               <img src={logoImage} alt="HaulMate WA Logo" className="h-14 w-14 rounded-full object-cover ring-2 ring-white/20" />
               <div className="font-display text-xl">HaulMate WA</div>
@@ -40,7 +40,7 @@ export function Footer() {
           </div>
 
           {/* Quick Links Col */}
-          <div className="text-sm">
+          <div className="col-span-1 text-sm">
             <div className="font-display text-lg mb-5 text-yellow">Quick Links</div>
             <ul className="space-y-3 text-white/70">
               <li><Link to="/" className="hover:text-yellow transition-colors inline-block">Home</Link></li>
@@ -53,7 +53,7 @@ export function Footer() {
           </div>
 
           {/* Legal Col */}
-          <div className="text-sm">
+          <div className="col-span-1 text-sm">
             <div className="font-display text-lg mb-5 text-yellow">Legal & Support</div>
             <ul className="space-y-3 text-white/70">
               <li><Link to="/privacy-policy" className="hover:text-yellow transition-colors inline-block">Privacy Policy</Link></li>
@@ -64,7 +64,7 @@ export function Footer() {
           </div>
 
           {/* Contact Col */}
-          <div className="text-sm">
+          <div className="col-span-2 md:col-span-1 text-sm">
             <div className="font-display text-lg mb-5 text-yellow">Contact Us</div>
             <ul className="space-y-4">
               <li>
@@ -90,7 +90,7 @@ export function Footer() {
 
         </div>
 
-        <div className="mt-16 mx-auto max-w-7xl px-4 sm:px-6 border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
+        <div className="mt-10 sm:mt-16 mx-auto max-w-7xl px-4 sm:px-6 border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
           <div>© {new Date().getFullYear()} HaulMate WA. All rights reserved.</div>
           <div className="flex gap-4">
             <Link to="/privacy-policy" className="hover:text-white">Privacy</Link>
