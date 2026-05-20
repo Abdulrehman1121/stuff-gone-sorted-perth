@@ -9,10 +9,10 @@ import {
   Phone, ShieldCheck, MapPin, DollarSign,
   CheckCircle2, Send, Camera, ArrowRight, Weight, Clock, ThumbsUp
 } from "lucide-react";
-import heroUte from "@/assets/hero-ute.jpg";
-import servicesHero from "@/assets/services_hero.png";
-import howItWorksHero from "@/assets/how_it_works_hero.png";
-import faqHero from "@/assets/faq_hero.png";
+import heroUte from "@/assets/hero-ute.webp";
+import servicesHero from "@/assets/services-hero.webp";
+import howItWorksHero from "@/assets/how-it-works-hero.webp";
+import faqHero from "@/assets/faq-hero.webp";
 
 const PHONE = "0415 125 702";
 const TEL = "tel:0415125702";

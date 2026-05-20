@@ -9,7 +9,7 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
-import logoImage from "../assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
+import logoImage from "../assets/haulmate-wa-logo.webp";
 
 function NotFoundComponent() {
   return (
@@ -93,7 +93,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       {
         rel: "icon",
-        type: "image/jpeg",
+        type: "image/webp",
         href: logoImage,
       },
     ],

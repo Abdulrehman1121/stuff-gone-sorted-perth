@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, MapPin, ShieldCheck, MessageSquare, Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
-import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
+import logoImage from "@/assets/haulmate-wa-logo.webp";
 
 const PHONE = "0415 125 702";
 const TEL = "tel:0415125702";

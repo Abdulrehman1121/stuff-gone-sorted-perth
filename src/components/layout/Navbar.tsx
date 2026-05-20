@@ -1,5 +1,5 @@
 import { Link, useLocation } from "@tanstack/react-router";
-import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
+import logoImage from "@/assets/haulmate-wa-logo.webp";
 
 export function Navbar() {
   const location = useLocation();

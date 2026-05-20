@@ -2,10 +2,10 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { ArrowRight, CheckCircle2, Truck, Recycle, CalendarClock, ShieldCheck } from "lucide-react";
 
-import householdRubbishImage from "@/assets/household-rubbish-waste.jpg";
-import furnitureRemovalImage from "@/assets/furniture-removal-waste.jpg";
-import gardenGreenWasteImage from "@/assets/garden-green-waste.jpg";
-import garageShedCleanoutsImage from "@/assets/garage-shed-waste.jpg";
+import householdRubbishImage from "@/assets/household-rubbish-waste.webp";
+import furnitureRemovalImage from "@/assets/furniture-removal-waste.webp";
+import gardenGreenWasteImage from "@/assets/garden-green-waste.webp";
+import garageShedCleanoutsImage from "@/assets/garage-shed-waste.webp";
 
 export const Route = createFileRoute("/services")({
   component: Services,

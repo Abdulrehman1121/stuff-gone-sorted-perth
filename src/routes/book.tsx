@@ -19,7 +19,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { CheckCircle2, Phone, Loader2, Upload, ArrowLeft, ArrowRight, ShieldCheck, ThumbsUp, Star } from "lucide-react";
-import logoImage from "@/assets/HaulMate WA Reliable Transit Logo_page-0001.jpg";
+import logoImage from "@/assets/haulmate-wa-logo.webp";
 
 export const Route = createFileRoute("/book")({
   component: BookPage,
