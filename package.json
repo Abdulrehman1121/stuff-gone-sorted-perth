@@ -10,7 +10,8 @@
     "preview": "vite preview",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "start": "node start.js"
+    "start": "node start.js",
+    "postinstall": "node postinstall.js"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
