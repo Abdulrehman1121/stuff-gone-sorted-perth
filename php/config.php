@@ -17,4 +17,4 @@ define('TOKEN_SECRET', getenv('TOKEN_SECRET') ?: 'haulmate_wa_secret_key_9876543
 
 // Business Notification Email (Where new booking alerts are sent)
 define('BUSINESS_EMAIL', 'abdulrehmankaleem195@gmail.com');
-define('BUSINESS_SENDER', 'no-reply@stuffgonesorted.com.au');
+define('BUSINESS_SENDER', 'abdulrehmankaleem195@gmail.com');
