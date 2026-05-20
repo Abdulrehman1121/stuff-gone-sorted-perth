@@ -18,7 +18,7 @@ export const LOAD_SIZES = [
 ] as const;
 
 export const URGENCIES = ["Today", "Tomorrow", "This week", "Flexible"] as const;
-export const CONTACT_METHODS = ["Call", "SMS", "Email"] as const;
+export const CONTACT_METHODS = ["Call", "WhatsApp", "Email"] as const;
 
 export const bookingInputSchema = z.object({
   full_name: z.string().trim().min(1, "Name is required").max(120),
