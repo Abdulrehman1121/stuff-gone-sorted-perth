@@ -10,6 +10,7 @@ const TEL = "tel:0415125702";
 export function Navbar() {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Close menu when route changes
   useEffect(() => {
@@ -28,24 +29,39 @@ export function Navbar() {
     };
   }, [isOpen]);
 
+  // Track scroll position for header styling
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   const getLinkClass = (path: string) => {
     const isActive = location.pathname === path;
     return isActive
-      ? "font-bold text-navy"
-      : "text-navy/80 hover:text-navy transition-colors";
+      ? "font-bold text-navy border-b-2 border-yellow md:border-none pb-1 md:pb-0"
+      : "text-navy/80 hover:text-navy transition-colors pb-1 md:pb-0";
   };
 
   const navLinks = [
     { to: "/", label: "Home" },
     { to: "/services", label: "Services" },
-    { to: "/why-us", label: "Why us" },
-    { to: "/how-it-works", label: "How it works" },
+    { to: "/why-us", label: "Why Us" },
+    { to: "/how-it-works", label: "How It Works" },
     { to: "/faq", label: "FAQ" },
   ];
 
   return (
     <>
-      <header className="sticky top-0 z-50 backdrop-blur bg-white/85 border-b border-border shadow-sm">
+      <header className={`sticky top-0 z-50 backdrop-blur transition-all duration-300 ${
+        isScrolled 
+          ? "bg-white/95 shadow-md border-b border-border/80" 
+          : "bg-white/85 border-b border-border shadow-sm"
+      }`}>
         <div className="mx-auto max-w-7xl px-4 sm:px-6 h-16 flex items-center justify-between">
           {/* Logo and Brand */}
           <Link to="/" className="flex items-center gap-2 group">
@@ -97,82 +113,70 @@ export function Navbar() {
         </div>
       </header>
 
-      {/* Mobile Drawer Navigation (using AnimatePresence) */}
+      {/* Mobile Full-Screen Slide-Down Navigation (using AnimatePresence) */}
       <AnimatePresence>
         {isOpen && (
-          <>
-            {/* Backdrop Overlay */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-              className="fixed inset-0 top-16 z-[60] bg-navy/40 backdrop-blur-sm md:hidden"
-            />
-
-            {/* Menu Slide-in panel */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed top-16 right-0 bottom-0 z-[60] w-full max-w-[290px] bg-white border-l border-border shadow-2xl p-6 flex flex-col justify-between md:hidden"
-            >
-              <div className="space-y-8">
-                {/* Navigation Links List */}
-                <nav className="flex flex-col gap-5 pt-4">
-                  {navLinks.map((link) => (
-                    <Link
-                      key={link.to}
-                      to={link.to}
-                      className={`text-lg font-semibold py-1 border-b border-navy/5 ${getLinkClass(
-                        link.to
-                      )}`}
-                    >
-                      {link.label}
-                    </Link>
-                  ))}
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+            className="fixed inset-x-0 top-16 bottom-0 z-[60] bg-white flex flex-col justify-between md:hidden border-t border-border/50"
+          >
+            <div className="overflow-y-auto px-6 py-8 flex flex-col justify-between h-full">
+              <nav className="flex flex-col gap-6 pt-2">
+                {navLinks.map((link) => (
                   <Link
-                    to="/contact"
-                    className={`text-lg font-semibold py-1 border-b border-navy/5 ${getLinkClass(
-                      "/contact"
+                    key={link.to}
+                    to={link.to}
+                    className={`text-2xl font-bold py-2 transition-colors tracking-tight ${getLinkClass(
+                      link.to
                     )}`}
                   >
-                    Contact
+                    {link.label}
                   </Link>
-                </nav>
+                ))}
+                <Link
+                  to="/contact"
+                  className={`text-2xl font-bold py-2 transition-colors tracking-tight ${getLinkClass(
+                    "/contact"
+                  )}`}
+                >
+                  Contact
+                </Link>
+              </nav>
 
+              <div className="space-y-6 mt-8">
                 {/* Primary Booking Call-To-Action */}
-                <div className="space-y-3 pt-2">
-                  <Link
-                    to="/book"
-                    className="w-full inline-flex items-center justify-center gap-2.5 rounded-2xl bg-yellow text-navy py-4 font-display font-bold shadow-lg shadow-yellow/10 hover:bg-yellow/90 active:scale-[0.98] transition-all"
-                  >
-                    <Calendar className="h-5 w-5" />
-                    Book online now
-                  </Link>
-                </div>
-              </div>
+                <Link
+                  to="/book"
+                  className="w-full inline-flex items-center justify-center gap-3 rounded-2xl bg-yellow text-navy py-4 font-display font-bold shadow-lg shadow-yellow/20 hover:bg-yellow/90 active:scale-[0.98] transition-all text-lg"
+                >
+                  <Calendar className="h-5.5 w-5.5 text-navy" />
+                  Book a Service
+                </Link>
 
-              {/* Bottom Quick Contact Section */}
-              <div className="border-t border-border pt-6 space-y-4">
-                <div className="text-xs uppercase tracking-wider text-navy/40 font-bold">
-                  Quick Contact
-                </div>
-                <div className="space-y-2">
+                {/* Bottom Quick Contact Section */}
+                <div className="border-t border-border pt-6 pb-2 space-y-4">
+                  <div className="text-xs uppercase tracking-wider text-navy/40 font-bold">
+                    Quick Contact
+                  </div>
                   <a
                     href={TEL}
                     className="flex items-center gap-3 text-navy font-semibold hover:text-yellow transition-colors group"
                   >
-                    <span className="h-10 w-10 rounded-xl bg-navy/5 flex items-center justify-center group-hover:bg-yellow/20">
+                    <span className="h-12 w-12 rounded-xl bg-navy/5 flex items-center justify-center group-hover:bg-yellow/20 transition-all">
                       <Phone className="h-5 w-5 text-navy" />
                     </span>
-                    <span className="text-sm">{PHONE}</span>
+                    <div className="flex flex-col">
+                      <span className="text-xs text-navy/50 font-medium">Call Us Directly</span>
+                      <span className="text-base">{PHONE}</span>
+                    </div>
                   </a>
                 </div>
               </div>
-            </motion.div>
-          </>
+            </div>
+          </motion.div>
         )}
       </AnimatePresence>
     </>

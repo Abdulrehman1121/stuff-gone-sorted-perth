@@ -129,17 +129,17 @@ function Index() {
       {/* HERO */}
       <section id="top" className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-gradient-to-br from-white via-white to-yellow/20" />
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-12 pb-20 lg:pt-20 lg:pb-28 grid lg:grid-cols-12 gap-10 items-center">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-10 pb-16 lg:pt-20 lg:pb-28 grid lg:grid-cols-12 gap-10 items-center">
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="lg:col-span-6"
+            className="lg:col-span-6 flex flex-col items-start"
           >
             <span className="inline-flex items-center gap-2 rounded-full bg-navy/5 text-navy px-3 py-1 text-xs font-semibold uppercase tracking-wider">
               <span className="h-2 w-2 rounded-full bg-yellow animate-pulse" /> Perth's local hauling crew
             </span>
-            <h1 className="mt-5 font-display text-4xl sm:text-6xl lg:text-7xl leading-[0.95] text-navy">
+            <h1 className="mt-5 font-display text-4xl sm:text-6xl lg:text-7xl leading-[0.95] text-navy tracking-tight">
               STUFF GONE.<br />
               <span className="text-yellow">SORTED.</span><br />
               <span className="brush text-navy">We'll take it!</span>
@@ -147,11 +147,11 @@ function Index() {
             <p className="mt-6 text-base sm:text-lg text-navy/70 max-w-xl leading-relaxed">
               Quick, hassle-free <strong>rubbish removal for Perth locals</strong>. From old couches to garden clippings and shed junk — we load it, clear it, and leave your space spotless.
             </p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold shadow-lg shadow-yellow/20 hover:-translate-y-0.5 hover:shadow-xl transition-all">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 w-full sm:w-auto">
+              <Link to="/book" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold shadow-lg shadow-yellow/20 hover:-translate-y-0.5 hover:shadow-xl transition-all">
                 Book Now <ArrowRight className="h-5 w-5" />
               </Link>
-              <Link to="/services" className="inline-flex items-center gap-2 rounded-full bg-white text-navy px-6 py-3.5 font-semibold border border-navy/10 hover:border-navy/30 transition-all">
+              <Link to="/services" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-white text-navy px-6 py-3.5 font-semibold border border-navy/10 hover:border-navy/30 transition-all">
                 View Services
               </Link>
             </div>
@@ -174,9 +174,9 @@ function Index() {
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="lg:col-span-6 relative"
+            className="lg:col-span-6 relative w-full"
           >
-            <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl shadow-navy/20 ring-1 ring-navy/10 bg-slate-100">
+            <div className="relative h-[250px] xs:h-[300px] sm:h-[450px] lg:h-auto lg:aspect-[4/3] w-full rounded-3xl overflow-hidden shadow-2xl shadow-navy/20 ring-1 ring-navy/10 bg-slate-100">
               <AnimatePresence mode="wait">
                 <motion.img
                   key={currentSlide}
@@ -208,11 +208,11 @@ function Index() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="absolute -top-5 -right-3 sm:-right-6 h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-yellow text-navy flex flex-col items-center justify-center text-center p-3 shadow-xl ring-4 ring-white z-10"
+              className="absolute -top-5 right-2 sm:-right-6 h-28 w-28 sm:h-40 sm:w-40 rounded-full bg-yellow text-navy flex flex-col items-center justify-center text-center p-2 sm:p-3 shadow-xl ring-4 ring-white z-10"
             >
               <Clock className="h-5 w-5 mb-1" />
-              <div className="font-display text-sm sm:text-base leading-tight">SAME-DAY<br/>SERVICE</div>
-              <div className="text-[10px] sm:text-xs font-bold mt-1">Book before 12 PM!</div>
+              <div className="font-display text-xs sm:text-base leading-tight font-bold">SAME-DAY<br/>SERVICE</div>
+              <div className="text-[9px] sm:text-xs font-bold mt-1">Book before 12 PM!</div>
             </motion.div>
           </motion.div>
         </div>
@@ -243,8 +243,8 @@ function Index() {
       </section>
 
       {/* SERVICE AREA */}
-      <section className="py-12 sm:py-16 lg:py-20 bg-yellow/15 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-5 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-10 items-center justify-center text-center lg:text-left">
+      <section className="py-16 sm:py-20 lg:py-24 bg-yellow/15 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-10 items-center justify-center text-center lg:text-left">
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -252,18 +252,23 @@ function Index() {
             transition={{ duration: 0.6 }}
             className="flex flex-col items-center lg:items-start w-full"
           >
-            <p className="text-navy bg-white inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">Service area</p>
-            <h2 className="mt-2 mb-4 responsive-heading text-navy font-display text-center lg:text-left w-full">
+            <p className="text-navy bg-white inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2 shadow-sm">Service area</p>
+            <h2 className="mt-2 mb-4 responsive-heading text-navy font-display text-center lg:text-left w-full font-bold">
               Servicing Perth & Surrounding Areas
             </h2>
             <p className="mt-2 responsive-paragraph text-navy/75 max-w-lg mx-auto lg:mx-0 text-center lg:text-left px-2 sm:px-0">
               Wherever you are in the Perth metro and nearby suburbs, we'll come to you. Friendly local crew, fair prices, and the same job-done attitude every time.
             </p>
-            <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-2 w-full max-w-lg">
+            <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-3 w-full max-w-lg">
               {["Perth CBD", "Northern Suburbs", "Southern Suburbs", "Eastern Suburbs", "Western Suburbs", "Hills"].map((s) => (
-                <span key={s} className="inline-flex items-center gap-1.5 rounded-full bg-white border border-navy/10 px-3 py-1.5 text-sm font-medium text-navy">
-                  <MapPin className="h-3.5 w-3.5 text-yellow-foreground" /> {s}
-                </span>
+                <motion.span 
+                  whileHover={{ scale: 1.03 }}
+                  whileTap={{ scale: 0.97 }}
+                  key={s} 
+                  className="inline-flex items-center gap-1.5 rounded-full bg-white border border-navy/10 px-4 py-2 text-sm font-semibold text-navy shadow-sm hover:shadow hover:border-yellow/50 transition-all duration-200 cursor-default"
+                >
+                  <MapPin className="h-4 w-4 text-yellow" /> {s}
+                </motion.span>
               ))}
             </div>
           </motion.div>
@@ -272,16 +277,16 @@ function Index() {
              whileInView={{ opacity: 1, scale: 1 }}
              viewport={{ once: true }}
              transition={{ duration: 0.8 }}
-             className="relative w-full flex justify-center"
+             className="relative w-full flex justify-center mt-6 lg:mt-0"
           >
-            <div className="aspect-square w-full max-w-[280px] xs:max-w-[320px] sm:max-w-md mx-auto rounded-full bg-gradient-to-br from-navy to-navy/70 relative overflow-hidden shadow-2xl">
+            <div className="aspect-square w-full max-w-[260px] xs:max-w-[300px] sm:max-w-md mx-auto rounded-full bg-gradient-to-br from-navy to-navy/70 relative overflow-hidden shadow-2xl">
               <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(255,255,255,0.18) 0 2px, transparent 3px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.18) 0 2px, transparent 3px)", backgroundSize: "60px 60px" }} />
               <span className="absolute inset-0 m-auto h-20 w-20 rounded-full bg-yellow/40 animate-ping" />
               <span className="absolute inset-0 m-auto h-40 w-40 rounded-full border border-yellow/40 animate-pulse-slow" />
               <span className="absolute inset-0 m-auto h-64 w-64 rounded-full border border-yellow/20" />
               <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
                 <MapPin className="h-12 w-12 text-yellow drop-shadow-lg" />
-                <div className="mt-2 font-display text-2xl">Perth, WA</div>
+                <div className="mt-2 font-display text-2xl font-bold">Perth, WA</div>
                 <div className="text-white/70 text-sm">We come to you</div>
               </div>
             </div>
@@ -297,7 +302,7 @@ function Index() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="rounded-3xl bg-navy text-white p-8 sm:p-12 lg:p-16 relative overflow-hidden"
+            className="rounded-3xl bg-navy text-white p-6 xs:p-8 sm:p-12 lg:p-16 relative overflow-hidden"
           >
             <div className="absolute -top-10 -right-10 h-64 w-64 rounded-full bg-yellow/20 blur-3xl" />
             <div className="grid lg:grid-cols-2 gap-12 relative">
@@ -371,7 +376,7 @@ function Index() {
       {/* TRUST BADGES */}
       <section className="pb-10 sm:pb-16">
         <div className="mx-auto max-w-7xl px-5 sm:px-6">
-          <div className="trust-cards-container">
+          <div className="grid grid-cols-1 min-[360px]:grid-cols-2 md:grid-cols-5 gap-4 sm:gap-6 w-full">
             {[
               { i: ShieldCheck, t: "Licensed & Insured" },
               { i: MapPin, t: "Local Perth Business" },
@@ -385,7 +390,7 @@ function Index() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 key={t} 
-                className="trust-card rounded-2xl bg-white border border-slate-100 shadow-md shadow-slate-100/50 hover:shadow-lg p-5 flex flex-col items-center justify-center text-center gap-3 hover:border-yellow/50 hover:-translate-y-1 transition-all min-h-[140px]"
+                className="rounded-2xl bg-white border border-slate-100 shadow-md shadow-slate-100/50 hover:shadow-lg p-5 flex flex-col items-center justify-center text-center gap-3 hover:border-yellow/50 hover:-translate-y-1 transition-all min-h-[140px]"
               >
                 <span className="h-14 w-14 rounded-full bg-yellow text-navy flex items-center justify-center shadow-inner hover:scale-105 transition-transform duration-300">
                   <I className="h-7 w-7" />

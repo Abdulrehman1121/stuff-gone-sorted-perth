@@ -134,6 +134,7 @@ function RootShell({ children }: { children: React.ReactNode }) {
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { BackToTop } from "@/components/layout/BackToTop";
+import { MobileBottomCTA } from "@/components/layout/MobileBottomCTA";
 
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
@@ -146,10 +147,15 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {!isAdmin && <Navbar />}
-      <Outlet />
-      {!isAdmin && <Footer />}
-      {!isAdmin && <BackToTop />}
+      <div className={`min-h-screen flex flex-col ${!isAdmin ? "pb-20 sm:pb-0" : ""}`}>
+        {!isAdmin && <Navbar />}
+        <div className="flex-1">
+          <Outlet />
+        </div>
+        {!isAdmin && <Footer />}
+        {!isAdmin && <BackToTop />}
+        {!isAdmin && <MobileBottomCTA />}
+      </div>
     </QueryClientProvider>
   );
 }
