@@ -17,7 +17,7 @@ export default defineConfig({
     server: {
       proxy: {
         "/php": {
-          target: "http://localhost:8000",
+          target: "http://localhost/stuff-gone-sorted-perth",
           changeOrigin: true,
         },
       },
