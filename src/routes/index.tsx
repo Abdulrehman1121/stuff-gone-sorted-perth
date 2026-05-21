@@ -240,18 +240,23 @@ function Index() {
       </section>
 
       {/* SERVICE AREA */}
-      <section className="py-20 bg-yellow/15 overflow-hidden">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 grid lg:grid-cols-2 gap-10 items-center">
+      <section className="py-12 sm:py-16 lg:py-20 bg-yellow/15 overflow-hidden">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6 flex flex-col lg:grid lg:grid-cols-2 gap-10 items-center justify-center text-center lg:text-left">
           <motion.div 
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="flex flex-col items-center lg:items-start w-full"
           >
-            <p className="text-navy bg-white inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Service area</p>
-            <h2 className="mt-4 font-display text-3xl sm:text-5xl text-navy">Servicing Perth & surrounding areas</h2>
-            <p className="mt-4 text-navy/75 max-w-lg">Wherever you are in the Perth metro and nearby suburbs, we'll come to you. Friendly local crew, fair prices, and the same job-done attitude every time.</p>
-            <div className="mt-6 flex flex-wrap gap-2">
+            <p className="text-navy bg-white inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">Service area</p>
+            <h2 className="mt-2 mb-4 responsive-heading text-navy font-display text-center lg:text-left w-full">
+              Servicing Perth &<br className="sm:hidden" /> Surrounding Areas
+            </h2>
+            <p className="mt-2 responsive-paragraph text-navy/75 max-w-lg mx-auto lg:mx-0 text-center lg:text-left px-2 sm:px-0">
+              Wherever you are in the Perth metro and nearby suburbs, we'll come to you. Friendly local crew, fair prices, and the same job-done attitude every time.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center lg:justify-start gap-2 w-full max-w-lg">
               {["Perth CBD", "Northern Suburbs", "Southern Suburbs", "Eastern Suburbs", "Western Suburbs", "Hills"].map((s) => (
                 <span key={s} className="inline-flex items-center gap-1.5 rounded-full bg-white border border-navy/10 px-3 py-1.5 text-sm font-medium text-navy">
                   <MapPin className="h-3.5 w-3.5 text-yellow-foreground" /> {s}
@@ -264,9 +269,9 @@ function Index() {
              whileInView={{ opacity: 1, scale: 1 }}
              viewport={{ once: true }}
              transition={{ duration: 0.8 }}
-             className="relative"
+             className="relative w-full flex justify-center"
           >
-            <div className="aspect-square max-w-md mx-auto rounded-full bg-gradient-to-br from-navy to-navy/70 relative overflow-hidden shadow-2xl">
+            <div className="aspect-square w-full max-w-[280px] xs:max-w-[320px] sm:max-w-md mx-auto rounded-full bg-gradient-to-br from-navy to-navy/70 relative overflow-hidden shadow-2xl">
               <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "radial-gradient(circle at 30% 40%, rgba(255,255,255,0.18) 0 2px, transparent 3px), radial-gradient(circle at 70% 60%, rgba(255,255,255,0.18) 0 2px, transparent 3px)", backgroundSize: "60px 60px" }} />
               <span className="absolute inset-0 m-auto h-20 w-20 rounded-full bg-yellow/40 animate-ping" />
               <span className="absolute inset-0 m-auto h-40 w-40 rounded-full border border-yellow/40 animate-pulse-slow" />
@@ -359,9 +364,9 @@ function Index() {
       </section>
 
       {/* TRUST BADGES */}
-      <section className="pb-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <section className="pb-10 sm:pb-16">
+        <div className="mx-auto max-w-7xl px-5 sm:px-6">
+          <div className="trust-cards-container">
             {[
               { i: ShieldCheck, t: "Licensed & Insured" },
               { i: MapPin, t: "Local Perth Business" },
@@ -375,10 +380,12 @@ function Index() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
                 key={t} 
-                className="rounded-2xl bg-white border border-navy/10 p-5 flex flex-col items-center text-center gap-2 hover:border-yellow hover:-translate-y-1 transition-all"
+                className="trust-card rounded-2xl bg-white border border-slate-100 shadow-md shadow-slate-100/50 hover:shadow-lg p-5 flex flex-col items-center justify-center text-center gap-3 hover:border-yellow/50 hover:-translate-y-1 transition-all min-h-[140px]"
               >
-                <span className="h-12 w-12 rounded-full bg-yellow text-navy flex items-center justify-center"><I className="h-6 w-6" /></span>
-                <div className="font-display text-sm text-navy">{t}</div>
+                <span className="h-14 w-14 rounded-full bg-yellow text-navy flex items-center justify-center shadow-inner hover:scale-105 transition-transform duration-300">
+                  <I className="h-7 w-7" />
+                </span>
+                <div className="font-display text-sm sm:text-base text-navy leading-snug">{t}</div>
               </motion.div>
             ))}
           </div>

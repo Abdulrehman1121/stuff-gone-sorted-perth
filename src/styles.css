@@ -110,3 +110,59 @@ html { scroll-behavior: smooth; }
   background-size: 100% 100%;
   padding: 0 .1em;
 }
+
+/* Responsive layout and typography fixes */
+*, ::before, ::after {
+  box-sizing: border-box;
+}
+
+.responsive-heading {
+  font-size: clamp(1.6rem, 6.5vw, 2.75rem);
+  line-height: 1.15;
+  overflow-wrap: break-word;
+}
+
+.responsive-paragraph {
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+
+/* Trust cards responsive flexbox layout */
+.trust-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.trust-card {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (min-width: 400px) {
+  .trust-cards-container {
+    gap: 20px;
+  }
+  .trust-card {
+    width: calc(50% - 10px);
+  }
+}
+
+@media (min-width: 768px) {
+  .trust-cards-container {
+    gap: 24px;
+  }
+  .trust-card {
+    width: calc(20% - 20px);
+    flex: 1;
+  }
+}
+
