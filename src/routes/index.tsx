@@ -6,7 +6,7 @@ import { z } from "zod";
 import { Toaster, toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  Phone, ShieldCheck, MapPin, DollarSign,
+  ShieldCheck, MapPin, DollarSign,
   CheckCircle2, Send, Camera, ArrowRight, Weight, Clock, ThumbsUp
 } from "lucide-react";
 import heroUte from "@/assets/hero-ute.webp";
@@ -298,14 +298,7 @@ function Index() {
                   <div className="text-xs uppercase tracking-wider text-yellow font-semibold">Call us now</div>
                   <div className="font-display text-4xl sm:text-6xl group-hover:text-yellow transition-colors">{PHONE}</div>
                 </a>
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <a href={TEL} className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold hover:-translate-y-0.5 transition-transform">
-                    <Phone className="h-5 w-5" /> Call {PHONE}
-                  </a>
-                  <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-6 py-3.5 font-semibold hover:-translate-y-0.5 transition-transform">
-                    <WhatsAppIcon className="h-5 w-5" /> WhatsApp
-                  </a>
-                </div>
+
               </div>
 
               <div className="rounded-2xl bg-white text-navy p-6 sm:p-8 shadow-2xl">
