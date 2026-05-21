@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 import { Toaster, toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
+import { apiRequest, uploadPhoto } from "@/lib/api-client";
 import {
   ShieldCheck, MapPin, DollarSign,
   CheckCircle2, Send, Camera, ArrowRight, Weight, Clock, ThumbsUp
@@ -50,6 +51,7 @@ type FormVals = z.infer<typeof schema>;
 function Index() {
   const [submitted, setSubmitted] = useState(false);
   const [photoName, setPhotoName] = useState<string | null>(null);
+  const [photoFile, setPhotoFile] = useState<File | null>(null);
   const {
     register, handleSubmit, formState: { errors, isSubmitting }, reset,
   } = useForm<FormVals>({ resolver: zodResolver(schema) });
@@ -69,12 +71,43 @@ function Index() {
     return () => clearInterval(timer);
   }, []);
 
-  const onSubmit = async (_v: FormVals) => {
-    await new Promise((r) => setTimeout(r, 600));
-    setSubmitted(true);
-    toast.success("Quote request sent! We'll be in touch shortly.");
-    reset();
-    setPhotoName(null);
+  const onSubmit = async (v: FormVals) => {
+    try {
+      let uploadedUrl = undefined;
+      if (photoFile) {
+        uploadedUrl = await uploadPhoto(photoFile);
+      }
+      
+      const d = new Date();
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, "0");
+      const day = String(d.getDate()).padStart(2, "0");
+      
+      await apiRequest("submit", {
+        method: "POST",
+        body: JSON.stringify({
+          full_name: v.name,
+          email: "unknown@example.com",
+          phone: v.phone,
+          suburb: v.suburb,
+          contact_method: "Call",
+          service_type: "Rubbish removal",
+          item_description: v.details,
+          preferred_date: `${year}-${month}-${day}`,
+          preferred_time: "12:00 PM",
+          urgency: "Flexible",
+          photo_url: uploadedUrl,
+        }),
+      });
+
+      setSubmitted(true);
+      toast.success("Quote request sent! We'll be in touch shortly.");
+      reset();
+      setPhotoName(null);
+      setPhotoFile(null);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Failed to submit request.");
+    }
   };
 
   const jsonLd = {
@@ -334,7 +367,16 @@ function Index() {
                       <label className="flex items-center gap-3 rounded-xl border border-dashed border-navy/25 px-4 py-3 cursor-pointer hover:bg-yellow/10 transition-colors">
                         <Camera className="h-5 w-5 text-navy/60" />
                         <span className="text-sm text-navy/70 truncate">{photoName ?? "Tap to attach a photo of the job"}</span>
-                        <input type="file" accept="image/*" className="hidden" onChange={(e) => setPhotoName(e.target.files?.[0]?.name ?? null)} />
+                        <input type="file" accept="image/*" className="hidden" onChange={(e) => {
+                          const file = e.target.files?.[0];
+                          if (file) {
+                            setPhotoName(file.name);
+                            setPhotoFile(file);
+                          } else {
+                            setPhotoName(null);
+                            setPhotoFile(null);
+                          }
+                        }} />
                       </label>
                     </Field>
                     <button type="submit" disabled={isSubmitting} className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-navy text-white py-3.5 font-semibold hover:bg-navy/90 disabled:opacity-70 transition-all">
