@@ -16,5 +16,5 @@ define('ADMIN_PASSWORD', getenv('ADMIN_PASSWORD') ?: 'AdminSecurePass123!'); // 
 define('TOKEN_SECRET', getenv('TOKEN_SECRET') ?: 'haulmate_wa_secret_key_987654321');
 
 // Business Notification Email (Where new booking alerts are sent)
-define('BUSINESS_EMAIL', 'abdulrehmankaleem195@gmail.com');
-define('BUSINESS_SENDER', 'abdulrehmankaleem195@gmail.com');
+define('BUSINESS_EMAIL', 'abdulrehmanmakki18@gmail.com');
+define('BUSINESS_SENDER', 'abdulrehmanmakki18@gmail.com');
