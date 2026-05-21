@@ -13,7 +13,7 @@ export const SERVICE_TYPES = [
 export const LOAD_SIZES = [
   "Small load",
   "Half UTE load",
-  "Full one-tonne UTE load",
+  "Full UTE load",
   "Not sure",
 ] as const;
 
@@ -47,12 +47,12 @@ export const bookingInputSchema = z.object({
   preferred_date: z.string().min(1, "Preferred date is required"),
   preferred_time: z.string().min(1, "Preferred time is required").refine(
     (val) => isTimeWithinBounds(val),
-    { message: "Booking time must be between 6:00 AM and 6:00 PM" }
+    { message: "Please choose a booking time between 6:00 AM and 6:00 PM." }
   ),
   alternative_date: z.string().optional().or(z.literal("")),
   alternative_time: z.string().optional().or(z.literal("")).refine(
     (val) => !val || isTimeWithinBounds(val),
-    { message: "Booking time must be between 6:00 AM and 6:00 PM" }
+    { message: "Please choose a booking time between 6:00 AM and 6:00 PM." }
   ),
   urgency: z.enum(URGENCIES).optional(),
 });

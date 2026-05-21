@@ -156,7 +156,7 @@ function Index() {
               </Link>
             </div>
             <div className="mt-8 flex flex-wrap gap-2">
-              {["Fast Service", "Fair Prices", "Licensed & Insured", "Spacious Tray UTE"].map((b, i) => (
+              {["Fast Service", "Fair Prices", "Licensed & Insured", "Spacious UTE"].map((b, i) => (
                 <motion.span 
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -218,28 +218,6 @@ function Index() {
         </div>
       </section>
 
-      {/* TRUST STRIP */}
-      <section className="bg-navy text-white py-5 overflow-hidden">
-        <div className="flex gap-12 whitespace-nowrap animate-marquee min-w-max">
-          {Array.from({ length: 2 }).map((_, k) => (
-            <div key={k} className="flex gap-12 items-center pr-12">
-              {[
-                { i: Clock, t: "Fast Service" },
-                { i: ShieldCheck, t: "Licensed & Insured" },
-                { i: DollarSign, t: "Fair Prices" },
-                { i: MapPin, t: "Local Perth Business" },
-                { i: Clock, t: "Same-Day Bookings" },
-                { i: ThumbsUp, t: "No Fuss, Just Sorted" },
-              ].map(({ i: I, t }) => (
-                <span key={t + k} className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide">
-                  <I className="h-4 w-4 text-yellow" /> {t}
-                </span>
-              ))}
-            </div>
-          ))}
-        </div>
-      </section>
-
       {/* QUICK PREVIEW SECTION */}
       <section className="py-8 sm:py-20 bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 text-center">
@@ -276,7 +254,7 @@ function Index() {
           >
             <p className="text-navy bg-white inline-block px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-2">Service area</p>
             <h2 className="mt-2 mb-4 responsive-heading text-navy font-display text-center lg:text-left w-full">
-              Servicing Perth &<br className="sm:hidden" /> Surrounding Areas
+              Servicing Perth & Surrounding Areas
             </h2>
             <p className="mt-2 responsive-paragraph text-navy/75 max-w-lg mx-auto lg:mx-0 text-center lg:text-left px-2 sm:px-0">
               Wherever you are in the Perth metro and nearby suburbs, we'll come to you. Friendly local crew, fair prices, and the same job-done attitude every time.
@@ -380,7 +358,7 @@ function Index() {
                       </label>
                     </Field>
                     <button type="submit" disabled={isSubmitting} className="w-full inline-flex items-center justify-center gap-2 rounded-full bg-navy text-white py-3.5 font-semibold hover:bg-navy/90 disabled:opacity-70 transition-all">
-                      {isSubmitting ? "Sending..." : (<>Request my free quote <Send className="h-4 w-4" /></>)}
+                      {isSubmitting ? "Sending..." : (<>Request My Free Quote <Send className="h-4 w-4" /></>)}
                     </button>
                   </form>
                 )}
@@ -398,7 +376,7 @@ function Index() {
               { i: ShieldCheck, t: "Licensed & Insured" },
               { i: MapPin, t: "Local Perth Business" },
               { i: ThumbsUp, t: "Reliable Service" },
-              { i: DollarSign, t: "Fair Prices" },
+              { i: DollarSign, t: "Fair Pricing" },
               { i: Clock, t: "Same-Day Bookings" },
             ].map(({ i: I, t }, idx) => (
               <motion.div 

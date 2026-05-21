@@ -27,7 +27,7 @@ const STEPS = [
   },
   {
     title: "3. We Haul It Away",
-    description: "Our friendly team arrives on time, loads up your rubbish into our one-tonne tray UTE, and hauls it away. Job done!",
+    description: "Our friendly team arrives on time, loads up your rubbish into our UTE, and hauls it away. Job done!",
     icon: Truck,
     image: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&w=800&q=80",
   },
