@@ -78,35 +78,32 @@ function Index() {
         uploadedUrl = await uploadPhoto(photoFile);
       }
       
-      const d = new Date();
-      const year = d.getFullYear();
-      const month = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      
-      await apiRequest("submit", {
+      const response = await fetch("/api/contact", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({
-          full_name: v.name,
-          email: "unknown@example.com",
+          name: v.name,
           phone: v.phone,
           suburb: v.suburb,
-          contact_method: "Call",
-          service_type: "Rubbish removal",
-          item_description: v.details,
-          preferred_date: `${year}-${month}-${day}`,
-          preferred_time: "12:00 PM",
-          urgency: "Flexible",
+          message: v.details,
           photo_url: uploadedUrl,
         }),
       });
 
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Something went wrong. Please try again or call us directly.");
+      }
+
       setSubmitted(true);
-      toast.success("Quote request sent! We'll be in touch shortly.");
+      toast.success("Thank you. Your request has been received. We’ll contact you shortly.");
       reset();
       setPhotoName(null);
       setPhotoFile(null);
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Failed to submit request.");
+    } catch (err: any) {
+      toast.error(err.message || "Something went wrong. Please try again or call us directly.");
     }
   };
 
@@ -323,8 +320,8 @@ function Index() {
                     <div className="mx-auto h-16 w-16 rounded-full bg-yellow flex items-center justify-center">
                       <CheckCircle2 className="h-8 w-8 text-navy" />
                     </div>
-                    <h3 className="mt-4 font-display text-2xl">Thanks — we've got it!</h3>
-                    <p className="mt-2 text-navy/70">We'll be in touch shortly with your free quote.</p>
+                    <h3 className="mt-4 font-display text-2xl">Request Received</h3>
+                    <p className="mt-2 text-navy/70">Thank you. Your request has been received. We’ll contact you shortly.</p>
                     <button onClick={() => setSubmitted(false)} className="mt-6 inline-flex items-center gap-2 rounded-full bg-navy text-white px-5 py-2.5 font-semibold hover:bg-navy/90">
                       Send another request
                     </button>

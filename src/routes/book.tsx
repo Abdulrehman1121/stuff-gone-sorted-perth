@@ -104,14 +104,23 @@ function BookPage() {
     setServerError(null);
     setSubmitting(true);
     try {
-      await apiRequest("submit", {
+      const response = await fetch("/api/booking", {
         method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify({ ...values, photo_url: photoUrl || undefined }),
       });
+      
+      const data = await response.json();
+      if (!response.ok || !data.success) {
+        throw new Error(data.error || "Something went wrong. Please try again or call us directly.");
+      }
+
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: "smooth" });
-    } catch (e) {
-      setServerError(e instanceof Error ? e.message : "Failed to submit");
+    } catch (e: any) {
+      setServerError(e.message || "Something went wrong. Please try again or call us directly.");
     } finally {
       setSubmitting(false);
     }
@@ -127,7 +136,7 @@ function BookPage() {
           </div>
           <h1 className="font-display text-2xl text-navy mt-4">Booking Request Received</h1>
           <p className="text-slate-600 mt-2">
-            Thanks! Your booking request has been received. We will review your details and confirm your slot by email or phone shortly.
+            Thank you. Your request has been received. We’ll contact you shortly.
           </p>
           <div className="mt-6 flex flex-wrap gap-2 justify-center">
             <a href="tel:0415125702" className="inline-flex items-center gap-2 bg-yellow text-navy font-semibold px-4 py-2.5 rounded-full hover:bg-yellow/90 shadow transition-colors">
