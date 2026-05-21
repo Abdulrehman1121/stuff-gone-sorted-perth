@@ -21,13 +21,18 @@ require_once __DIR__ . '/config.php';
 
 // Establish Database Connection & Setup Table
 try {
-    $dsn = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";dbname=" . DB_NAME . ";charset=utf8mb4";
+    $dsnWithoutDb = "mysql:host=" . DB_HOST . ";port=" . DB_PORT . ";charset=utf8mb4";
     $options = [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
         PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
         PDO::ATTR_EMULATE_PREPARES => false,
     ];
-    $pdo = new PDO($dsn, DB_USER, DB_PASS, $options);
+    // Connect to MySQL server first without selecting a database
+    $pdo = new PDO($dsnWithoutDb, DB_USER, DB_PASS, $options);
+    
+    // Auto-create database if it doesn't exist
+    $pdo->exec("CREATE DATABASE IF NOT EXISTS `" . DB_NAME . "` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
+    $pdo->exec("USE `" . DB_NAME . "`");
 
     // Auto-create bookings table if it doesn't exist
     $createTableSql = "
