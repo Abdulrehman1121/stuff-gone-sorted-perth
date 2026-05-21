@@ -35,8 +35,8 @@
   --color-navy: var(--navy);
   --color-navy-foreground: var(--navy-foreground);
   --color-yellow: var(--yellow);
-  --color-yellow-foreground: var(--yellow-foreground);
-  --font-display: "Archivo Black", "Inter", system-ui, sans-serif;
+  --color-yellow-foreground: oklch(0.18 0.05 265);
+  --font-display: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
   --font-sans: "Inter", system-ui, sans-serif;
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 3s ease-in-out infinite;

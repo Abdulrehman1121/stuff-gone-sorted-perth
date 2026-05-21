@@ -15,25 +15,25 @@ export const Route = createFileRoute("/why-us")({
 const REASONS = [
   {
     title: "Fast & Reliable",
-    description: "We show up when we say we will. We understand your time is valuable, so we offer prompt, dependable service across Perth Metro.",
+    description: "We actually show up when we say we will. We know your time is valuable, so when you book with us, you get a prompt, dependable service you can count on.",
     icon: Clock,
     image: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Fair, Upfront Prices",
-    description: "No hidden fees or surprise surcharges. We provide clear, itemized quotes based on the volume and type of rubbish, ensuring transparency.",
+    description: "No hidden fees, no nasty surprises. We provide clear, upfront quotes based exactly on what needs clearing. You'll know the price before we load a single item.",
     icon: DollarSign,
     image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Licensed & Insured",
-    description: "Peace of mind is guaranteed. We are fully insured and handle all waste responsibly in accordance with local regulations.",
+    description: "For your peace of mind, we are fully insured and hold all necessary licenses. We handle every job safely and dispose of waste responsibly.",
     icon: ShieldCheck,
     image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
   },
   {
     title: "Eco-Friendly Disposal",
-    description: "We care about the planet. We sort, reuse, and recycle your items wherever possible to minimize landfill impact in Western Australia.",
+    description: "We don't just dump everything in landfill. We take the time to sort and recycle your items wherever possible, keeping Western Australia beautiful.",
     icon: ThumbsUp,
     image: "https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?auto=format&fit=crop&w=800&q=80",
   },
@@ -55,8 +55,8 @@ function WhyUs() {
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl leading-tight">
               Why Choose <span className="text-yellow">HaulMate WA?</span>
             </h1>
-            <p className="mt-6 text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
-              We are a local Perth business dedicated to providing hassle-free, professional, and friendly rubbish removal services. We treat your property with respect.
+            <p className="mt-6 text-base sm:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+              We're a dedicated local Perth crew, focused on making rubbish removal completely hassle-free. We pride ourselves on hard work, honest pricing, and leaving your property looking great.
             </p>
             <div className="mt-8">
               <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold shadow-lg hover:-translate-y-0.5 transition-transform">

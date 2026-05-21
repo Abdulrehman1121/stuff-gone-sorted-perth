@@ -25,13 +25,13 @@ export const Route = createFileRoute("/")({
   component: Index,
   head: () => ({
     meta: [
-      { title: "HaulMate WA | Rubbish Removal Perth — One Tonne UTE" },
+      { title: "HaulMate WA | Rubbish Removal Perth — Fast & Reliable" },
       {
         name: "description",
         content:
-          "Fast, reliable rubbish removal Perth. Furniture removal, garden waste, garage cleanouts & junk removal with a one tonne tray UTE. Call 0415 125 702 for a free quote.",
+          "Quick, hassle-free rubbish removal for Perth homes and businesses. Couches, garden clippings, shed junk—we load it and clear it for you. Call 0415 125 702 for a free quote.",
       },
-      { name: "keywords", content: "rubbish removal Perth, furniture removal Perth, garden waste removal Perth, garage cleanouts Perth, junk removal Perth, one tonne UTE rubbish removal, fast local rubbish removal" },
+      { name: "keywords", content: "rubbish removal Perth, furniture removal Perth, garden waste removal Perth, garage cleanouts Perth, junk removal Perth, spacious tray UTE rubbish removal, fast local rubbish removal" },
       { property: "og:title", content: "HaulMate WA | Rubbish Removal Perth" },
       { property: "og:description", content: "Fast, reliable rubbish removal across Perth. Call 0415 125 702 for a free quote." },
       { property: "og:type", content: "website" },
@@ -55,7 +55,7 @@ function Index() {
   } = useForm<FormVals>({ resolver: zodResolver(schema) });
 
   const carouselImages = [
-    { src: heroUte, alt: "One tonne tray UTE loaded with furniture and household rubbish in Perth" },
+    { src: heroUte, alt: "Spacious tray UTE loaded with furniture and household rubbish in Perth" },
     { src: servicesHero, alt: "HaulMate WA rubbish removal service in action" },
     { src: howItWorksHero, alt: "Reliable rubbish disposal crew" },
     { src: faqHero, alt: "Shed and garage cleanup service" }
@@ -67,14 +67,6 @@ function Index() {
       setCurrentSlide((prev) => (prev + 1) % carouselImages.length);
     }, 4500);
     return () => clearInterval(timer);
-  }, []);
-
-  useEffect(() => {
-    const l = document.createElement("link");
-    l.rel = "stylesheet";
-    l.href = "https://fonts.googleapis.com/css2?family=Archivo+Black&family=Inter:wght@400;500;600;700;800&display=swap";
-    document.head.appendChild(l);
-    return () => { document.head.removeChild(l); };
   }, []);
 
   const onSubmit = async (_v: FormVals) => {
@@ -89,7 +81,7 @@ function Index() {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     name: "HaulMate WA",
-    description: "Fast, reliable rubbish removal across Perth with a one-tonne tray UTE.",
+    description: "Quick, hassle-free rubbish removal for Perth homes and businesses.",
     telephone: "+61415125702",
     areaServed: "Perth, Western Australia",
     priceRange: "$$",
@@ -119,8 +111,8 @@ function Index() {
               <span className="text-yellow">SORTED.</span><br />
               <span className="brush text-navy">We'll take it!</span>
             </h1>
-            <p className="mt-6 text-base sm:text-lg text-navy/70 max-w-xl">
-              Fast, reliable <strong>rubbish removal across Perth</strong> with a one‑tonne tray UTE. Furniture, garden waste, garage cleanouts and general junk — big or small, we haul it all.
+            <p className="mt-6 text-base sm:text-lg text-navy/70 max-w-xl leading-relaxed">
+              Quick, hassle-free <strong>rubbish removal for Perth locals</strong>. From old couches to garden clippings and shed junk — we load it, clear it, and leave your space spotless.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold shadow-lg shadow-yellow/20 hover:-translate-y-0.5 hover:shadow-xl transition-all">
@@ -131,7 +123,7 @@ function Index() {
               </Link>
             </div>
             <div className="mt-8 flex flex-wrap gap-2">
-              {["Fast Service", "Fair Prices", "Licensed & Insured", "One Tonne Payload"].map((b, i) => (
+              {["Fast Service", "Fair Prices", "Licensed & Insured", "Spacious Tray UTE"].map((b, i) => (
                 <motion.span 
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
@@ -185,9 +177,9 @@ function Index() {
               transition={{ delay: 0.8 }}
               className="absolute -top-5 -right-3 sm:-right-6 h-32 w-32 sm:h-40 sm:w-40 rounded-full bg-yellow text-navy flex flex-col items-center justify-center text-center p-3 shadow-xl ring-4 ring-white z-10"
             >
-              <Weight className="h-5 w-5 mb-1" />
-              <div className="font-display text-sm sm:text-base leading-tight">ONE TONNE<br/>PAYLOAD</div>
-              <div className="text-[10px] sm:text-xs font-bold mt-1">Big jobs, no worries!</div>
+              <Clock className="h-5 w-5 mb-1" />
+              <div className="font-display text-sm sm:text-base leading-tight">SAME-DAY<br/>SERVICE</div>
+              <div className="text-[10px] sm:text-xs font-bold mt-1">Book before 12 PM!</div>
             </motion.div>
           </motion.div>
         </div>
@@ -203,7 +195,7 @@ function Index() {
                 { i: ShieldCheck, t: "Licensed & Insured" },
                 { i: DollarSign, t: "Fair Prices" },
                 { i: MapPin, t: "Local Perth Business" },
-                { i: Weight, t: "One Tonne Payload" },
+                { i: Clock, t: "Same-Day Bookings" },
                 { i: ThumbsUp, t: "No Fuss, Just Sorted" },
               ].map(({ i: I, t }) => (
                 <span key={t + k} className="inline-flex items-center gap-2 text-sm font-semibold tracking-wide">
@@ -372,7 +364,7 @@ function Index() {
               { i: MapPin, t: "Local Perth Business" },
               { i: ThumbsUp, t: "Reliable Service" },
               { i: DollarSign, t: "Fair Prices" },
-              { i: Weight, t: "One Tonne Payload" },
+              { i: Clock, t: "Same-Day Bookings" },
             ].map(({ i: I, t }, idx) => (
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}

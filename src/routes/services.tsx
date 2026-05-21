@@ -20,7 +20,7 @@ export const Route = createFileRoute("/services")({
 const SERVICES = [
   {
     title: "Household Rubbish Removal",
-    description: "From old mattresses to broken appliances, we clear out your household junk quickly and efficiently. No need to hire a skip bin — we load it all for you.",
+    description: "Got old mattresses, broken appliances, or general clutter taking up space? Skip the hassle of hiring a bin—we’ll come to your property, do all the heavy lifting, and clear it out fast.",
     icon: Truck,
     image: householdRubbishImage,
     bullets: [
@@ -32,7 +32,7 @@ const SERVICES = [
   },
   {
     title: "Furniture Removal",
-    description: "Upgrading your furniture? We'll take away the old couches, dining tables, and wardrobes so you have space for the new ones. Safe and prompt disposal.",
+    description: "Upgrading your home? We make getting rid of old couches, heavy dining tables, and bulky wardrobes incredibly easy. We handle the lifting so you can enjoy your new space without the stress.",
     icon: CalendarClock,
     image: furnitureRemovalImage,
     bullets: [
@@ -44,7 +44,7 @@ const SERVICES = [
   },
   {
     title: "Garden & Green Waste",
-    description: "After a big weekend in the garden, let us haul away the branches, clippings, and soil. We ensure all green waste is disposed of in an eco-friendly manner.",
+    description: "Finished a big weekend in the garden? Let us haul away the loose branches, massive piles of clippings, and heavy soil. We ensure all green waste is disposed of responsibly and recycled wherever possible.",
     icon: Recycle,
     image: gardenGreenWasteImage,
     bullets: [
@@ -56,7 +56,7 @@ const SERVICES = [
   },
   {
     title: "Garage & Shed Cleanouts",
-    description: "Reclaim your space. We help you clear decades of accumulated clutter from your shed, garage, or storage unit, handling all sorting and lifting.",
+    description: "Ready to park your car in the garage again? We help you clear out years of accumulated clutter from sheds, garages, and storage units. Leave the sorting, lifting, and dirty work to us.",
     icon: CheckCircle2,
     image: garageShedCleanoutsImage,
     bullets: [
@@ -87,8 +87,8 @@ function Services() {
             <h1 className="font-display text-3xl sm:text-5xl lg:text-6xl leading-tight">
               Professional <span className="text-yellow">Rubbish Removal</span> Services in Perth
             </h1>
-            <p className="mt-6 text-base sm:text-lg text-white/80 max-w-2xl mx-auto">
-              We handle all the heavy lifting so you don't have to. Fast, affordable, and eco-friendly rubbish removal for homes and businesses across Perth.
+            <p className="mt-6 text-base sm:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed">
+              We handle all the heavy lifting so you don't have to. Fast, straightforward, and professional rubbish removal for homes and businesses across the Perth metro.
             </p>
             <div className="mt-8">
               <Link to="/book" className="inline-flex items-center gap-2 rounded-full bg-yellow text-navy px-6 py-3.5 font-semibold shadow-lg hover:-translate-y-0.5 transition-transform">
